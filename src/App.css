@@ -1,9 +1,48 @@
-.App {
-  text-align: center;
+body {
+  background-color: black;
+  color: rgb(185, 224, 224);
+}
+.floatLeft {
+  position: relative;
+  float: left;
+}
+.floatRight {
+  float: right;
+}
+.noBorder {
+  border: none;
+}
+.box {
+  background-color: rgb(10, 20, 35);
+  margin: 0.5em;
+  border-radius: 1em;
+  border: 1px solid lightgray;
+  max-width: 30%;
+}
+.sep {
+  clear: both;
+  padding: 0.2em;
+  padding-left: 0.5em;
+  border-top: 1px dotted lightblue;
+}
+.padding {
+  padding: 1em;
+}
+.innerBox h4 {
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  color: lightcyan;
+  background-color: rgb(0, 123, 255);
+  border-radius: 1em;
+  border: 1px solid lightgray;
+}
+
+.main {
+  margin: 1em;
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 20vmin;
   pointer-events: none;
 }
 
@@ -13,7 +52,7 @@
   }
 }
 
-.App-header {
+/* .App-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -22,11 +61,8 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
+  margin-bottom: 1vh;
+}*/
 
 @keyframes App-logo-spin {
   from {
