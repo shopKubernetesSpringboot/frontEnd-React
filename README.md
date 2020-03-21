@@ -1,6 +1,6 @@
 # Shop-Web
 
-This SPA web project uses shopCart micro-service.
+This SPA web project uses [shopCart](https://github.com/davidgfolch/shopCart) micro-service.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
