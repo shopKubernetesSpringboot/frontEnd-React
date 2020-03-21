@@ -1,20 +1,11 @@
 import React from 'react'
 import cartIcon from './cart.svg';
+import { restApiCartAdd } from "../restClient";
 
 class CartButton extends React.Component {
 
     restCartAdd(product,updateCartFnc) {
-        fetch('http://localhost:8080/cart/add', {
-            method: 'POST',
-            credentials: "include",
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': 'Basic '+btoa('user:user')
-            },
-            body: '{ "item": '+JSON.stringify(product) +'}'
-        }).then(res => res.json()
-        ).then((data) => {
+        restApiCartAdd(product).then((data) => {
             updateCartFnc()
         }).catch(console.log)
     }

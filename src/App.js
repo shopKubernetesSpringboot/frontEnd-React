@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import Products from './components/products';
 import Cart from './components/cart/cart';
+import restApiLoadCart from './components/restClient';
 
 class App extends Component {
 
@@ -30,23 +31,7 @@ class App extends Component {
   }
 
   loadCart() {
-    fetch('http://localhost:8080/cart/list',
-        { method: 'GET',
-          credentials: "include",
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': 'Basic '+btoa('user:user')
-          }
-        }
-    )
-    .then(res => res.json())
-    .then((data) => {
-      console.log("rest response: "+JSON.stringify(data));
-      this.setState(state => ({cart: data}));
-      console.log("this.state: "+JSON.stringify(this.state));
-    })
-    .catch(console.log)
+    restApiLoadCart().then((data) => this.setState(state => ({cart: data})));
   }
 
   componentDidMount() {
