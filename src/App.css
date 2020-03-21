@@ -19,6 +19,14 @@ body {
   border: 1px solid lightgray;
   max-width: 30%;
 }
+.cartQuantity {
+  background-color: rgb(10, 20, 35);
+  margin-right: 0.5em;
+  padding-right: 0.5em;
+  padding-left: 0.5em;
+  border-radius: 1em;
+  border: 1px solid lightblue;
+} 
 .sep {
   clear: both;
   padding: 0.2em;
