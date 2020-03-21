@@ -12,7 +12,6 @@ export function restApiLoadCart() {
         }
     )
     .then(res => res.json())
-    .catch(console.log);
   }
 
 export function restApiCartAdd(product) {
@@ -26,7 +25,6 @@ export function restApiCartAdd(product) {
         },
         body: '{ "item": '+JSON.stringify(product) +'}'
     }).then(res => res.json())
-    .catch(console.log)
 }
 
 export default restApiLoadCart;

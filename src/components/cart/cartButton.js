@@ -7,7 +7,7 @@ class CartButton extends React.Component {
     restCartAdd(product,updateCartFnc) {
         restApiCartAdd(product).then((data) => {
             updateCartFnc()
-        }).catch(console.log)
+        })
     }
   
     render() {

@@ -12,6 +12,9 @@ body {
 .noBorder {
   border: none;
 }
+.marginRight {
+  margin-right: 0.5em;
+}
 .box {
   background-color: rgb(10, 20, 35);
   margin: 0.5em;

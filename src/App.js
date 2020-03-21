@@ -11,6 +11,7 @@ class App extends Component {
     super(props);
 
     this.state = {
+        error: "",
         cart: [],
         products: [
           { "id": 1, "name": "Product1"},
@@ -27,20 +28,25 @@ class App extends Component {
       };
 
     this.loadCart = this.loadCart.bind(this)
-
   }
 
   loadCart() {
-    restApiLoadCart().then((data) => this.setState(state => ({cart: data})));
+    this.setState({error: ''});
+    restApiLoadCart()
+        .then((data) => this.setState(state => ({cart: data})))
+        .catch(e => this.setState({error: 'Can\'t load cart data! '+e.toString()}));
   }
 
   componentDidMount() {
-    this.loadCart();
+    this.loadCart()
   }
 
   render() {
     return (
       <div className="main">
+        {this.state.error.length>0 &&
+            <div className="alert alert-danger" role="alert" id="errorDiv">{this.state.error}</div>
+        }
         <div className="floatLeft box">
             <div className="innerBox">
                 <div className="floatLeft"><img src={logo} className="App-logo" alt="logo" /></div>
