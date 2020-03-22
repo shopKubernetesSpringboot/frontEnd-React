@@ -21,7 +21,9 @@ class Cart extends React.Component {
             }
             {this.props.cart.map((item) => (
               <div className="sep" key={item.id}>
-                <div className="floatLeft cartQuantity">{item.quantity}</div>
+                <div className="floatLeft cartQuantity">
+                  <span>{item.quantity}</span>
+                </div>
                 {item.name}
               </div>
             ))}

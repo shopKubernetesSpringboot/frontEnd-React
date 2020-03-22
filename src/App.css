@@ -24,15 +24,22 @@ body {
   margin: 0.5em;
   border-radius: 1em;
   border: 1px solid lightgray;
-  max-width: 30%;
 }
-.cartQuantity {
-  background-color: rgb(10, 20, 35);
-  margin-right: 0.5em;
+@media(min-width: 600px) {
+  .box {
+    width: 30%;
+  }  
+}
+.cartQuantity span {
   padding-right: 0.5em;
   padding-left: 0.5em;
   border-radius: 1em;
   border: 1px solid lightblue;
+}
+.cartQuantity {
+  text-align: right;
+  width: 3em;
+  margin-right: 0.5em;
 } 
 .sep {
   clear: both;
