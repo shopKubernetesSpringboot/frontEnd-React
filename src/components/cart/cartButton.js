@@ -1,11 +1,11 @@
 import React from 'react'
 import cartIcon from './cart.svg';
-import { restApiCartAdd } from "../restClient";
+import { restApi_CartAdd } from "../restClient";
 
 class CartButton extends React.Component {
 
     restCartAdd(product,updateCartFnc) {
-        restApiCartAdd(product)
+        restApi_CartAdd(product)
             .then(
                 () => updateCartFnc(), //onFullFilled
                 (onRejectedReason) => updateCartFnc('Can\'t add data to cart!',onRejectedReason)

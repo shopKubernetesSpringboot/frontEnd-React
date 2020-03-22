@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import Products from './components/products';
 import Cart from './components/cart/cart';
-import restApiLoadCart from './components/restClient';
+import restApi_CartList from './components/restClient';
 import Messages from './components/messages';
 
 class App extends Component {
@@ -41,7 +41,7 @@ class App extends Component {
             return
         }
         this.setState({ error: '' })
-        restApiLoadCart()
+        restApi_CartList()
             .then(
                 (data) => this.setState({ cart: data }),
                 (onRejectReason) => this.setError('Can\'t load cart data!',onRejectReason)
@@ -72,7 +72,7 @@ class App extends Component {
                     <Products products={this.state.products} updateCartFnc={this.loadCart} />
                 </div>
                 <div className="floatLeft box">
-                    <Cart cart={this.state.cart} />
+                    <Cart cart={this.state.cart} updateCartFnc={this.loadCart}/>
                 </div>
             </div>
         );

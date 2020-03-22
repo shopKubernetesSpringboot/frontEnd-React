@@ -1,8 +1,17 @@
 import React from 'react'
 import trashIcon from './trash.svg';
 import okIcon from './ok.svg';
+import { restApi_CartClean } from "../restClient";
 
 class Cart extends React.Component {
+
+  clean(product,updateCartFnc) {
+    restApi_CartClean()
+        .then(
+            () => updateCartFnc(), //onFullFilled
+            (onRejectedReason) => updateCartFnc('Can\'t clean cart!',onRejectedReason)
+        )
+  }
 
   render() {
     if (this.props.cart) {
@@ -11,13 +20,16 @@ class Cart extends React.Component {
             <center><h4>Cart</h4></center>
             {this.props.cart.length > 0 &&
               <div className="sep">
-                <button type="button" className="btn btn-primary btn-sm marginRight">
+                <button type="button" className="btn btn-primary btn-sm marginRight" onClick={this.clean.bind(this,this.props.product,this.props.updateCartFnc)}>
                   <img src={trashIcon} alt="+" className="icon"/>
                 </button>
                 <button type="button" className="btn btn-primary btn-sm">
                   <img src={okIcon} alt="+" className="icon"/>
                 </button>
               </div>
+            }
+            {this.props.cart.length === 0 &&
+              <div className="sep">Cart is empty</div>
             }
             {this.props.cart.map((item) => (
               <div className="sep" key={item.id}>
