@@ -5,9 +5,12 @@ import { restApiCartAdd } from "../restClient";
 class CartButton extends React.Component {
 
     restCartAdd(product,updateCartFnc) {
-        restApiCartAdd(product).then((data) => {
-            updateCartFnc()
-        })
+        restApiCartAdd(product)
+            .then(
+                () => updateCartFnc(), //onFullFilled
+                (onRejectedReason) => updateCartFnc('Can\'t add data to cart!',onRejectedReason)
+            )
+            // .catch(e => updateCartFnc('Can\'t add data to cart!',e))
     }
   
     render() {

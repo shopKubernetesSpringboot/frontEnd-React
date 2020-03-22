@@ -2,6 +2,10 @@ body {
   background-color: black;
   color: rgb(185, 224, 224);
 }
+#errorDiv pre {
+  color: inherit;
+  margin-bottom: 0rem;
+}
 .floatLeft {
   position: relative;
   float: left;
