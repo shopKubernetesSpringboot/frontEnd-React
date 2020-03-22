@@ -10,7 +10,6 @@ class CartButton extends React.Component {
                 () => updateCartFnc(), //onFullFilled
                 (onRejectedReason) => updateCartFnc('Can\'t add data to cart!',onRejectedReason)
             )
-            // .catch(e => updateCartFnc('Can\'t add data to cart!',e))
     }
   
     render() {

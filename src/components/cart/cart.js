@@ -5,7 +5,7 @@ import { restApi_CartClean } from "../restClient";
 
 class Cart extends React.Component {
 
-  clean(product,updateCartFnc) {
+  clean(updateCartFnc) {
     restApi_CartClean()
         .then(
             () => updateCartFnc(), //onFullFilled
@@ -20,7 +20,8 @@ class Cart extends React.Component {
             <center><h4>Cart</h4></center>
             {this.props.cart.length > 0 &&
               <div className="sep">
-                <button type="button" className="btn btn-primary btn-sm marginRight" onClick={this.clean.bind(this,this.props.product,this.props.updateCartFnc)}>
+                <button type="button" className="btn btn-primary btn-sm marginRight"
+                  onClick={this.clean.bind(this,this.props.updateCartFnc)}>
                   <img src={trashIcon} alt="+" className="icon"/>
                 </button>
                 <button type="button" className="btn btn-primary btn-sm">
