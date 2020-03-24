@@ -3,8 +3,8 @@ import logo from './logo.svg';
 import './App.css';
 import Products from './components/products';
 import Cart from './components/cart/cart';
-import restApi_CartList from './components/restClient';
 import Messages from './components/messages';
+import RestClient from './components/restClient';
 
 class App extends Component {
 
@@ -13,7 +13,7 @@ class App extends Component {
 
         this.state = {
             error: "",
-            cart: [],
+            reloadCart: false,
             products: [
                 { "id": 1, "name": "Product1" },
                 { "id": 2, "name": "Product2" },
@@ -28,28 +28,21 @@ class App extends Component {
             ]
         };
 
-        this.loadCart = this.loadCart.bind(this)
+        this.setError = this.setError.bind(this)
+        this.reloadCart = this.reloadCart.bind(this)
     }
 
     setError(msg,e) {
-        this.setState({ error: msg +'\n' + e.toString() })
+        if (msg===undefined && e===undefined) this.setState({ error: '' })
+        else this.setState({ error: msg +'\n' + e.toString() })
+    }
+    
+    reloadCart() {
+        this.setState({ reloadCart: true }, this.setState({reloadCart: false}))
     }
 
-    loadCart(errorMsg, error) {
-        if (errorMsg!==undefined) {
-            this.setError(errorMsg, error)
-            return
-        }
-        this.setState({ error: '' })
-        restApi_CartList()
-            .then(
-                (data) => this.setState({ cart: data }),
-                (onRejectReason) => this.setError('Can\'t load cart data!',onRejectReason)
-            )
-    }
-
-    componentDidMount() {
-        this.loadCart()
+    restClientHandler(client) {
+        this.setState({restClient: client})
     }
 
     render() {
@@ -65,14 +58,15 @@ class App extends Component {
                             <hr />
                             <p>Developed by <a href="https://github.com/davidgfolch">David G. Folch</a></p>
                             <p>Icons <a href="https://github.com/danklammer/bytesize-icons">Bootstrap byte-size-icons</a></p>
+                            <RestClient handler={this.restClientHandler}/>
                         </div>
                     </div>
                 </div>
                 <div className="floatLeft box">
-                    <Products products={this.state.products} updateCartFnc={this.loadCart} />
+                    <Products products={this.state.products} reloadCart={this.reloadCart} restClient={this.state.restClient} errorFnc={this.setError}/>
                 </div>
                 <div className="floatLeft box">
-                    <Cart cart={this.state.cart} updateCartFnc={this.loadCart}/>
+                    <Cart errorFnc={this.setError} restClient={this.state.restClient} reload={this.state.reloadCart}/>
                 </div>
             </div>
         );

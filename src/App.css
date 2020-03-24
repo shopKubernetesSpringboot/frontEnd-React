@@ -30,6 +30,12 @@ body {
     width: 30%;
   }  
 }
+.cartSummary {
+  padding: 0.2em;
+  padding-left: 0.5em;
+  padding-top: 0em;
+  margin-top: -0.1em;
+}
 .cartQuantity span {
   padding-right: 0.5em;
   padding-left: 0.5em;
@@ -64,7 +70,9 @@ body {
 }
 
 .App-logo {
-  height: 20vmin;
+  height: 10em;
+  /* width: 30%;
+  height: 80%; */
   pointer-events: none;
 }
 

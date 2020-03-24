@@ -12,7 +12,7 @@ class Products extends React.Component {
                 {this.props.products.map((product) => (
                     <div className="sep" key={product.id}>
                         <div className="floatRight">
-                            <CartButton updateCartFnc={this.props.updateCartFnc} product={product}/>
+                            <CartButton reloadCart={this.props.reloadCart} product={product} restClient={this.props.restClient} errorFnc={this.setError}/>
                         </div>
                         <div>{product.name}</div>
                     </div>

@@ -1,48 +1,27 @@
-const host='http://localhost:8080'
-const cartEndPoint=host+'/cart'
+import React from 'react';
 
-export async function restApi_CartList() {
-  const res = await fetch(cartEndPoint + '/list', {
-    method: 'GET',
-    credentials: "include",
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      'Authorization': auth()
+export default class RestClient extends React.Component {
+
+    constructor(props) {
+        super(props)
+        this.state = {
+            restClient: 'Axios',
+            isRestClientAxios: true
+        }
     }
-  });
-  return await res.json();
-}
 
-export async function restApi_CartAdd(product) {
-  const res = await fetch(cartEndPoint + '/add', {
-    method: 'POST',
-    credentials: "include",
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      'Authorization': auth()
-    },
-    body: '{ "item": ' + JSON.stringify(product) + '}'
-  });
-  return await res.json();
-}
-
-export async function restApi_CartClean() {
-  const res = await fetch(cartEndPoint + '/list', {
-    method: 'DELETE',
-    credentials: "include",
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      'Authorization': auth()
+    toggleRestClient() {
+        this.setState({restClient: this.state.restClient==='Axios'?'Fetch':'Axios' },
+            () => this.setState({isRestClientAxios: this.state.restClient==='Axios'}))
+        
     }
-  });
-  return await res.json();
-}
 
-function auth() {
-  return 'Basic ' + btoa('user:user');
+    render() {
+        return (
+            <p>{this.state.restClient} Rest Client:&nbsp;
+                <button type="button" className={'btn  btn-sm '+(this.state.isRestClientAxios?'btn-primary':'btn-outline-primary')} onClick={()=>this.toggleRestClient()}>Axios</button>
+                <button type="button" className={'btn  btn-sm '+(!this.state.isRestClientAxios?'btn-primary':'btn-outline-primary')} onClick={()=>this.toggleRestClient()}>Fetch</button>
+            </p>
+        );
+    }
 }
-
-export default restApi_CartList;
