@@ -1,3 +1,5 @@
+import cloneDeep from 'lodash/cloneDeep';
+
 const host='http://localhost:8080'
 const cartEndPoint=host+'/cart'
 
@@ -10,37 +12,37 @@ const headers = {
     "X-XSRF-TOKEN": CSRF_TOKEN
   }
 
+const config = {
+  credentials: "include",
+  headers: headers
+}
+const getConfig = cloneDeep(config);    getConfig.method='GET'
+const postConfig = cloneDeep(config);   postConfig.method='POST'
+const deleteConfig = cloneDeep(config); deleteConfig.method='DELETE'
+
+function auth() {
+  return 'Basic ' + btoa('user:user');
+}
+
+function post(body) {
+  const config = cloneDeep(postConfig)
+  config.body=body
+  return config
+}
 
 export async function restApi_CartList() {
-  const res = await fetch(cartEndPoint + '/list', {
-    method: 'GET',
-    credentials: "include",
-    headers: headers
-  });
+  const res = await fetch(cartEndPoint + '/list', getConfig)
   return await res.json();
 }
 
 export async function restApi_CartAdd(product) {
-  const res = await fetch(cartEndPoint + '/add', {
-    method: 'POST',
-    credentials: "include",
-    headers: headers,
-    body: '{ "item": ' + JSON.stringify(product) + '}'
-  });
+  const res = await fetch(cartEndPoint + '/add', post('{ "item": ' + JSON.stringify(product) + '}'));
   return await res.json();
 }
 
 export async function restApi_CartClean() {
-  const res = await fetch(cartEndPoint + '/list', {
-    method: 'DELETE',
-    credentials: "include",
-    headers: headers
-  });
+  const res = await fetch(cartEndPoint + '/list', deleteConfig);
   return await res.json();
-}
-
-function auth() {
-  return 'Basic ' + btoa('user:user');
 }
 
 export default restApi_CartList;

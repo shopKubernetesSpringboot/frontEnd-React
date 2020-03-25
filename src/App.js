@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Products from './components/products';
 import Cart from './components/cart/cart';
 import Messages from './components/messages';
-import RestClient from './components/restClient';
+import InfoBox from './components/infoBox';
 
 class App extends Component {
 
@@ -49,18 +48,9 @@ class App extends Component {
         return (
             <div className="main">
                 <Messages errorMsg={this.state.error}/>
+
                 <div className="floatLeft box">
-                    <div className="innerBox">
-                        <div className="floatLeft"><img src={logo} className="App-logo" alt="logo" /></div>
-                        <div className="floatLeft padding">
-                            <p>Edit <code>src/App.js</code> and save to reload.</p>
-                            <a href="https://reactjs.org" target="_blank" rel="noopener noreferrer">Learn React</a>
-                            <hr />
-                            <p>Developed by <a href="https://github.com/davidgfolch">David G. Folch</a></p>
-                            <p>Icons <a href="https://github.com/danklammer/bytesize-icons">Bootstrap byte-size-icons</a></p>
-                            <RestClient handler={this.restClientHandler}/>
-                        </div>
-                    </div>
+                    <InfoBox restClientHandler={this.state.restClientHandler}/>
                 </div>
                 <div className="floatLeft box">
                     <Products products={this.state.products} reloadCart={this.reloadCart} restClient={this.state.restClient} errorFnc={this.setError}/>

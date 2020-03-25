@@ -1,8 +1,7 @@
 import React from 'react'
 import trashIcon from './trash.svg';
 import okIcon from './ok.svg';
-import { rest } from "../restClient_axios";
-import { restApi_CartClean, restApi_CartList } from "../restClient_fetch";
+import { load, clean } from "./restClient";
 
 class Cart extends React.Component {
 
@@ -25,25 +24,19 @@ class Cart extends React.Component {
 
   loadCart() {
     this.props.errorFnc();
-    if (this.props.restClient==='Axios')
-        rest.get('/list')
-            .then(res => this.setState({ cart: res.data }))
-            .catch((onRejectReason) => this.props.errorFnc('Can\'t load cart data!',onRejectReason))
-    else
-        restApi_CartList().then(
-                (data) => this.setState({ cart: data }),
-                (onRejectReason) => this.props.errorFnc('Can\'t load cart data! (Fetch)',onRejectReason))
+    const errorMsg='Can\'t load cart data!';
+    load(this.props.restClient).then(
+      (data) => this.setState({ cart: data }),
+      (onRejectReason) => this.props.errorFnc(errorMsg,onRejectReason)
+    ).catch((error) => this.props.errorFnc(errorMsg,error))
   }
 
   clean() {
-    if (this.props.restClient==='Axios')
-      rest.delete('/list')
-        .then((res) => this.loadCart())
-        .catch((onRejectReason) => this.props.errorFnc('Can\'t add data to cart!',onRejectReason))
-    else
-      restApi_CartClean().then(
-              () => this.loadCart(), //onFullFilled
-              (onRejectedReason) => this.props.errorFnc('Can\'t clean cart!',onRejectedReason))
+    const errorMsg='Can\'t clean cart!';
+    clean(this.props.restClient).then(
+      () => this.loadCart(), //onFullFilled
+      (onRejectedReason) => this.props.errorFnc(errorMsg,onRejectedReason))
+    .catch((onRejectReason) => this.props.errorFnc(errorMsg,onRejectReason))
   }
 
   render() {
