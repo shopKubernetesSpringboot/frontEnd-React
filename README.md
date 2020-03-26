@@ -24,6 +24,10 @@ Launches the test runner in the interactive watch mode.
 
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
+## `yarn test --coverage --watchAll=false`
+
+Launches tests with coverage.  Alternatively `npm test -- --coverage --watchAll=false`
+
 ### `yarn build`
 
 Builds the app for production to the `build` folder.

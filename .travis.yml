@@ -2,6 +2,6 @@ language: node_js
 node_js: node
 cache: npm
 script:
-  - yarn test
+  - yarn test --coverage --watchAll=false
 # after_success:
 #   - npm run coverage
