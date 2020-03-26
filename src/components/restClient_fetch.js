@@ -1,9 +1,10 @@
 import cloneDeep from 'lodash/cloneDeep';
+import Cookies from 'js-cookie';
 
 const host='http://localhost:8080'
 const cartEndPoint=host+'/cart'
 
-const CSRF_TOKEN = document.cookie.match(new RegExp(`XSRF-TOKEN=([^;]+)`))[1];
+const CSRF_TOKEN = Cookies.get('XSRF-TOKEN') //document.cookie.match(new RegExp(`XSRF-TOKEN=([^;]+)`))[1]; //test crash
 
 const headers = {
     'Accept': 'application/json',

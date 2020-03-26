@@ -11,6 +11,9 @@
 # production
 /build
 
+#travis-ci
+yarn.lock
+
 # misc
 .DS_Store
 .env.local
