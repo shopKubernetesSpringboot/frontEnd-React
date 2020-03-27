@@ -2,25 +2,63 @@ import React from "react";
 import { render, unmountComponentAtNode } from "react-dom";
 import { act } from "react-dom/test-utils";
 
+import configureStore from 'redux-mock-store'
+import { Provider } from 'react-redux';
+import renderer from 'react-test-renderer';
+import { setError } from '../actions'
+
 import Messages from "./messages";
 
-let container = null;
-beforeEach(() => {
-    //configure DOM element as target for rendering
-    container = document.createElement("div");
-    document.body.appendChild(container);
-});
+const mockStore = configureStore([]);
 
-afterEach(() => {
-    //clean at exit
-    unmountComponentAtNode(container);
-    container.remove();
-    container = null;
-});
+describe('My Connected React-Redux Component', () => {
+    let store;
+    let container = null;
+    
+    beforeEach(() => {
+        //configure DOM element as target for rendering
+        container = document.createElement("div");
+        document.body.appendChild(container);
+    });
 
-it("render with or without message", () => {
-    act(() => { render(<Messages />, container); });
-    expect(container.textContent).toBe("");
-    act(() => { render(<Messages errorMsg="error example text" />, container);});
-    expect(container.textContent).toBe("error example text");
-});
+    afterEach(() => {
+        //clean at exit
+        unmountComponentAtNode(container);
+        container.remove();
+        container = null;
+    });
+
+    it("render without message", () => {
+        store = mockStore({
+            messages: [],
+        });
+        store.dispatch = jest.fn();
+        let component = renderer.create(
+            <Provider store={store}>
+              <Messages />
+            </Provider>
+          );
+        expect(component.toJSON()).toMatchSnapshot();
+        renderer.act(() => {  });
+        expect(component.textContent).toBe(undefined);
+    });
+
+    it("render with message", () => {
+        // store.messages=[{ errorMsg: 'x', error: 'x' }];
+        store = mockStore({
+            messages: [{ errorMsg: 'x', error: 'x' }],
+        });
+        // store.dispatch = jest.fn();
+
+        let component = renderer.create(
+            <Provider store={store}>
+              <Messages />
+            </Provider>
+          );
+        // store.dispatch(setError({ errorMsg: 'x', error: 'x' }));
+        // expect(component.toTree().rendered.rendered.rendered.props.children.toJSON()).toBe("");
+        expect(component.toTree().rendered.rendered.rendered.props.children).toBe(<pre><code>x
+            x</code></pre>);
+        expect(component.textContent).toBe("error example text");
+    });
+})

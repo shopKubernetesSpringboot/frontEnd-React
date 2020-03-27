@@ -86,6 +86,9 @@ Update modules interactively.
 
 # Redux
 
-Add dependencies:
+[good blog implementing with redux](https://www.valentinog.com/blog/redux/)
+[good blog testing with redux](https://www.robinwieruch.de/react-connected-component-test)
 
-`yarn add react react-redux`
+Add redux dependencies: `yarn add react react-redux`
+
+Add mock redux store dependencies: `yarn add redux-mock-store --save-dev`
