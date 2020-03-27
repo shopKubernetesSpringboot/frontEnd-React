@@ -83,3 +83,9 @@ This section has moved [here](https://facebook.github.io/create-react-app/docs/t
 ### `yarn upgrade-interactive --latest`
 
 Update modules interactively.
+
+# Redux
+
+Add dependencies:
+
+`yarn add react react-redux`

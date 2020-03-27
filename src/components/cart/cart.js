@@ -3,7 +3,10 @@ import trashIcon from './trash.svg';
 import okIcon from './ok.svg';
 import { load, clean } from "./restClient";
 
-class Cart extends React.Component {
+import { connect } from "react-redux";
+import { setError_mapDispatchToProps } from '../../actions/index'
+
+class CartRender extends React.Component {
 
   constructor(props) {
     super(props);
@@ -23,20 +26,21 @@ class Cart extends React.Component {
   }
 
   loadCart() {
-    this.props.errorFnc();
+    this.props.setError({ msg: '', error: ''});
     const errorMsg='Can\'t load cart data!';
     load(this.props.restClient).then(
       (data) => this.setState({ cart: data }),
-      (onRejectReason) => this.props.errorFnc(errorMsg,onRejectReason)
-    ).catch((error) => this.props.errorFnc(errorMsg,error))
+      (onRejectReason) => this.props.setError({ msg: errorMsg, error: onRejectReason })
+    ).catch((error) => this.props.setError({ msg: errorMsg, error: error }))
   }
 
   clean() {
     const errorMsg='Can\'t clean cart!';
+    this.props.setError({ msg: '', error: ''});
     clean(this.props.restClient).then(
       () => this.loadCart(), //onFullFilled
-      (onRejectedReason) => this.props.errorFnc(errorMsg,onRejectedReason))
-    .catch((onRejectReason) => this.props.errorFnc(errorMsg,onRejectReason))
+      (onRejectReason) => this.props.setError({ msg: errorMsg, error: onRejectReason })
+    ).catch((error) => this.props.setError({ msg: errorMsg, error: error }))
   }
 
   render() {
@@ -90,4 +94,8 @@ class Cart extends React.Component {
   }
 }
 
+const Cart = connect(
+  null,
+  setError_mapDispatchToProps
+)(CartRender);
 export default Cart

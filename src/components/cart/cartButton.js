@@ -3,18 +3,21 @@ import cartIcon from './cart.svg';
 import { rest } from "../restClient_axios";
 import { restApi_CartAdd } from "../restClient_fetch";
 
-class CartButton extends React.Component {
+import { connect } from "react-redux";
+import { setError_mapDispatchToProps } from '../../actions/index'
+
+class CartButtonComp extends React.Component {
 
     restCartAdd() {
         let errorMsg='Can\'t add data to cart!'
         if (this.props.restClient==='Axios')
             rest.post('/add', { item: this.props.product})
                     .then(() => this.props.reloadCart())
-                    .catch((onRejectReason) => this.props.errorFnc(errorMsg,onRejectReason))
+                    .catch((error) => this.props.setError({ msg: errorMsg, error: error }))
         else
             restApi_CartAdd(this.props.product).then(
                 () => this.props.reloadCart(), //onFullFilled
-                (onRejectedReason) => this.props.errorFnc(errorMsg,onRejectedReason))
+                (onRejectReason) => this.props.setError({ msg: errorMsg, error: onRejectReason }))
     }
   
     render() {
@@ -28,4 +31,8 @@ class CartButton extends React.Component {
     }
   }
 
-export default CartButton
+  const CartButton = connect(
+    null,
+    setError_mapDispatchToProps
+  )(CartButtonComp);
+  export default CartButton

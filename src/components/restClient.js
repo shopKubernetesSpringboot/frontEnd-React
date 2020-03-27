@@ -12,8 +12,10 @@ export default class RestClient extends React.Component {
 
     toggleRestClient() {
         this.setState({restClient: this.state.restClient==='Axios'?'Fetch':'Axios' },
-            () => this.setState({isRestClientAxios: this.state.restClient==='Axios'}))
-        
+            () => {
+                this.setState({isRestClientAxios: this.state.restClient==='Axios'})
+                this.props.handler(this.state.restClient)
+            })
     }
 
     render() {
