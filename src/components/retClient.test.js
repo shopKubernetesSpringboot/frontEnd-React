@@ -28,7 +28,9 @@ it("render with Fetch option", () => {
 });
 
 it("render clicked option", () => {
-    act(() => {render(<RestClient/>, container)});
+    const handler=jest.fn()
+    // const hi=new handler();
+    act(() => {render(<RestClient handler={handler}/>, container)});
   
     const button = document.querySelector("#fetchButton");
     expect(button.innerHTML).toBe("Fetch");
