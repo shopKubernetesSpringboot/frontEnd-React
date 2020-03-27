@@ -19,25 +19,23 @@ afterEach(() => {
 });
 
 it("render with default option", () => {
-    act(() => { render(<RestClient />, container); });
+    act(() => {render(<RestClient />, container)});
     expect(container.textContent).toContain("Axios Rest Client:");
 });
 it("render with Fetch option", () => {
-    act(() => { render(<RestClient client='Fetch'/>, container); });
+    act(() => {render(<RestClient client='Fetch'/>, container)});
     expect(container.textContent).toContain("Fetch Rest Client:");
 });
 
 it("render clicked option", () => {
-    act(() => {
-      render(<RestClient/>, container);
-    });
+    act(() => {render(<RestClient/>, container)});
   
-    const button = document.querySelector("[data-testid=fetchButton]");
+    const button = document.querySelector("#fetchButton");
     expect(button.innerHTML).toBe("Fetch");
     act(() => { button.dispatchEvent(new MouseEvent("click", { bubbles: true })); });
     expect(container.textContent).toContain("Fetch Rest Client:");
   
-    const buttonAxios = document.querySelector("[data-testid=axiosButton]");
+    const buttonAxios = document.querySelector("#axiosButton");
     expect(buttonAxios.innerHTML).toBe("Axios");
     act(() => { buttonAxios.dispatchEvent(new MouseEvent("click", { bubbles: true })); });
     expect(container.textContent).toContain("Axios Rest Client:");

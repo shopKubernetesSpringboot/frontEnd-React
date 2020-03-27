@@ -5,7 +5,7 @@ import Cart from './components/cart/cart';
 import Messages from './components/messages';
 import InfoBox from './components/infoBox';
 
-class App extends Component {
+export default class App extends Component {
 
     constructor(props) {
         super(props);
@@ -63,4 +63,3 @@ class App extends Component {
     }
 }
 
-export default App;
