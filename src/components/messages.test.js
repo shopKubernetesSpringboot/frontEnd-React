@@ -44,21 +44,17 @@ describe('My Connected React-Redux Component', () => {
     });
 
     it("render with message", () => {
-        // store.messages=[{ errorMsg: 'x', error: 'x' }];
         store = mockStore({
-            messages: [{ errorMsg: 'x', error: 'x' }],
+            messages: [{ errorMsg: 'XErrorMsgX', error: 'XErrorX' }],
         });
-        // store.dispatch = jest.fn();
-
         let component = renderer.create(
             <Provider store={store}>
               <Messages />
             </Provider>
           );
-        // store.dispatch(setError({ errorMsg: 'x', error: 'x' }));
-        // expect(component.toTree().rendered.rendered.rendered.props.children.toJSON()).toBe("");
-        expect(component.toTree().rendered.rendered.rendered.props.children).toBe(<pre><code>x
-            x</code></pre>);
-        expect(component.textContent).toBe("error example text");
+        let div=component.toTree().rendered.rendered.rendered
+        expect(div.props.children.type).toBe("pre")
+        expect(div.props.children.props.children.type).toBe("code")
+        expect(div.props.children.props.children.props.children).toBe("XErrorMsgX\nXErrorX")
     });
 })
