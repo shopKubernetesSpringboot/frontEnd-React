@@ -45,7 +45,7 @@ describe('My Connected React-Redux Component', () => {
 
     it("render with message", () => {
         store = mockStore({
-            messages: [{ errorMsg: 'XErrorMsgX', error: 'XErrorX' }],
+            messages: [{ errorMsg: 'XErrorMsg1X', error: 'XError2X' }],
         });
         let component = renderer.create(
             <Provider store={store}>
@@ -55,6 +55,6 @@ describe('My Connected React-Redux Component', () => {
         let div=component.toTree().rendered.rendered.rendered
         expect(div.props.children.type).toBe("pre")
         expect(div.props.children.props.children.type).toBe("code")
-        expect(div.props.children.props.children.props.children).toBe("XErrorMsgX\nXErrorX")
+        expect(div.props.children.props.children.props.children).toBe("XErrorMsg1X\nXError2X")
     });
 })
