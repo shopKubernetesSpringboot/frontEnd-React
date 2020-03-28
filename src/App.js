@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Products from './components/products';
+import Products from './components/product/products';
 import Cart from './components/cart/cart';
 import Messages from './components/messages';
 import InfoBox from './components/infoBox';

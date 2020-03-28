@@ -11,7 +11,7 @@ class CartButtonComp extends React.Component {
     restCartAdd() {
         let errorMsg='Can\'t add data to cart!'
         if (this.props.restClient==='Axios')
-            rest.post('/add', { item: this.props.product})
+            rest.post('/cart/add', { item: this.props.product})
                     .then(() => this.props.reloadCart())
                     .catch((error) => this.props.setError({ msg: errorMsg, error: error }))
         else

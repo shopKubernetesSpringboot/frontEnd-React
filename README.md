@@ -1,8 +1,15 @@
 # Shop-Web
 
-This SPA web project uses [shopCart](https://github.com/davidgfolch/shopCart) micro-service.
+This SPA web project uses:
+
+- [shopCart](https://github.com/davidgfolch/shopCart) micro-service.
+- [shopProduct](https://github.com/davidgfolch/shopProduct) micro-service.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+- Rest client implementation with Fetch & Axios
+
+- Using react-redux.
 
 ## Available Scripts
 
@@ -84,7 +91,7 @@ This section has moved [here](https://facebook.github.io/create-react-app/docs/t
 
 Update modules interactively.
 
-# Redux
+## Redux
 
 [good blog implementing with redux](https://www.valentinog.com/blog/redux/)
 [good blog testing with redux](https://www.robinwieruch.de/react-connected-component-test)

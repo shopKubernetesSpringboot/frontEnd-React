@@ -1,17 +1,23 @@
 import { rest } from "../restClient_axios";
-import { restApi_CartClean, restApi_CartList } from "../restClient_fetch";
+import { host, getConfig, restApi_CartClean } from "../restClient_fetch";
 
 export function load(restClient) {
     if (restClient==='Axios')
-        return rest.get('/list').then(res => res.data)
+        return rest.get('/cart/list').then(res => res.data)
     else
         return restApi_CartList()
-
 }
 
 export function clean(restClient) {
     if (restClient==='Axios')
-        return rest.delete('/list')
+        return rest.delete('/cart/list')
     else
         return restApi_CartClean()
 }
+
+async function restApi_CartList() {
+    const res = await fetch(host+'/cart/list', getConfig)
+    return await res.json();
+}
+  
+  
