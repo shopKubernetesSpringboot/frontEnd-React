@@ -38,6 +38,8 @@
     ]
   },
   "devDependencies": {
-    "react-test-renderer": "^16.13.1"
+    "jest-sonar-reporter": "^2.0.0",
+    "react-test-renderer": "^16.13.1",
+    "sonarqube-scanner": "^2.6.0"
   }
 }
