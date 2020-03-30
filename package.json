@@ -8,11 +8,13 @@
     "@testing-library/user-event": "^7.1.2",
     "acorn": "^7.1.1",
     "axios": "^0.19.2",
+    "enzyme-adapter-react-16": "^1.15.2",
     "js-cookie": "^2.2.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",
     "react-scripts": "3.4.1",
+    "react-shallow-testutils": "^3.0.1",
     "redux": "^4.0.5",
     "redux-mock-store": "^1.5.4"
   },
@@ -40,6 +42,7 @@
     ]
   },
   "devDependencies": {
+    "enzyme": "^3.11.0",
     "jest-sonar-reporter": "^2.0.0",
     "react-test-renderer": "^16.13.1",
     "sonarqube-scanner": "^2.6.0"

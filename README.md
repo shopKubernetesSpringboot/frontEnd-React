@@ -103,3 +103,11 @@ Add mock redux store dependencies: `yarn add redux-mock-store --save-dev`
 ## Travis/sonarcloud
 
 Added [Travis-ci build](https://travis-ci.com/github/davidgfolch/shop-web) and static code analysis with [SonarCloud](https://sonarcloud.io/dashboard?id=shop-web)
+
+## Testing
+
+### Enzyme
+
+https://www.npmjs.com/package/enzyme-adapter-react-16
+
+`yarn add --D enzyme enzyme-adapter-react-16`
