@@ -5,6 +5,6 @@ script:
   - yarn test --env=jsdom --coverage --watchAll=false --testResultsProcessor jest-sonar-reporter
   - ls -al ./src/*.test.js
   - ls -al ./src/components/*.test.js
-  - yarn sonar -X
+  - yarn sonar
 # after_success:
 #   - npm run coverage

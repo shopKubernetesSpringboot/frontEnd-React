@@ -19,7 +19,7 @@ sonarqubeScanner(
         "sonar.javascript.lcov.reportPaths": "coverage/lcov.info",
         "sonar.testExecutionReportPaths": "test-report.xml",
         'sonar.log.level': 'TRACE',
-        'sonar.verbose': true
+        'sonar.verbose': 'true'
       },
     },
     () => {},
