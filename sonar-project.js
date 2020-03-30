@@ -14,7 +14,7 @@ sonarqubeScanner(
         "sonar.organization": "davidgfolch-github",
         "sonar.sources": "./src",
         // "sonar.exclusions": "**/__tests__/**",
-        "sonar.tests": "./src/**/*.test.js",
+        "sonar.tests": "./src/*.test.js,./src/**/*.test.js",
         // "sonar.test.inclusions": "./src/__tests__/**/*.test.tsx,./src/__tests__/**/*.test.ts",
         "sonar.javascript.lcov.reportPaths": "coverage/lcov.info",
         "sonar.testExecutionReportPaths": "test-report.xml",
