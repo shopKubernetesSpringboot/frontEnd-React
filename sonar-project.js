@@ -15,7 +15,7 @@ sonarqubeScanner(
         "sonar.sources": "./src",
         // "sonar.exclusions": "**/__tests__/**",
         "sonar.tests": 'src,src/components',
-        "sonar.test.inclusions": "*.test.js",
+        "sonar.test.inclusions": "**/*.test.js",
         "sonar.javascript.lcov.reportPaths": "coverage/lcov.info",
         "sonar.testExecutionReportPaths": "test-report.xml",
         'sonar.log.level': 'TRACE',
