@@ -99,3 +99,7 @@ Update modules interactively.
 Add redux dependencies: `yarn add react react-redux`
 
 Add mock redux store dependencies: `yarn add redux-mock-store --save-dev`
+
+## Travis/sonarcloud
+
+Added [Travis-ci build](https://travis-ci.com/github/davidgfolch/shop-web) and static code analysis with [SonarCloud](https://sonarcloud.io/dashboard?id=shop-web)
