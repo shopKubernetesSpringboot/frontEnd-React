@@ -9,7 +9,6 @@ import { setError_mapDispatchToProps } from '../../actions/index'
 class CartButtonComp extends React.Component {
 
     restCartAdd() {
-        console.log("onclick function execut3ed!!!!!!!!!!!")
         let errorMsg='Can\'t add data to cart!'
         if (this.props.restClient==='Axios')
             rest.post('/cart/add', { item: this.props.product})

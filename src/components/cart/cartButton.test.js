@@ -11,9 +11,10 @@ Enzyme.configure({ adapter: new Adapter() });
 
 describe('CartButton', () => {
     let store;
-    
+    let reloadCartSpy;
+    let product = { id: "productId", name: "productName" }
+
     beforeAll(() => {
-        global.fetch = jest.fn();
         store = mockStore({})
         // store = mockStore({
         //     messages: [],
@@ -24,18 +25,39 @@ describe('CartButton', () => {
     let wrapper;
 
     beforeEach(() => {
-        wrapper = mount(<CartButton store={store}/>);
-     });
+        reloadCartSpy = jest.fn()
+        global.fetch = jest.fn()
+    });
      
-     afterEach(() => {
-        wrapper.unmount();
-     });
+    afterEach(() => {
+    });
 
-    it("render", () => {
+    it("render with Fetch", () => {
+        const mockSuccessResponse = { data: {} };
+        const mockJsonPromise = Promise.resolve(mockSuccessResponse); // 2
+        const mockFetchPromise = Promise.resolve({ // 3
+          json: () => mockJsonPromise,
+        });
+        jest.spyOn(global, 'fetch').mockImplementation(() => mockFetchPromise); // 4
+
+        wrapper = mount(<CartButton  store={store} reloadCart={reloadCartSpy} product={product} restClient={'Fetch'}/>);
+        wrapper.restApi_CartAdd = jest.fn(() => mockJsonPromise)
         expect(wrapper.find("button").exists()).toBeTruthy();
         expect(wrapper.find("img").exists()).toBeTruthy();
-        // const spyDidMount = jest.spyOn(CartButton.prototype,"restCartAdd");
         wrapper.find("button").simulate('click')
+        expect(global.fetch).toHaveBeenCalled()
+        // expect(reloadCartSpy).toHaveBeenCalled()
+        wrapper.unmount();
+    });
+
+    it("render with Axios", () => {
+        wrapper = mount(<CartButton  store={store} reloadCart={reloadCartSpy} product={product} restClient={'Axios'}/>);
+        expect(wrapper.find("button").exists()).toBeTruthy();
+        expect(wrapper.find("img").exists()).toBeTruthy();
+        wrapper.find("button").simulate('click')
+        expect(global.fetch).not.toHaveBeenCalled()
+        // expect(reloadCartSpy).toHaveBeenCalled()
+        wrapper.unmount();
     });
 
 
