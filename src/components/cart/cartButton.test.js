@@ -39,8 +39,11 @@ describe('CartButton', () => {
             </Provider>
           );
         // expect(component.toJSON()).toMatchSnapshot();  travis-ci fails when snapshot changes
-        renderer.act(() => {  });
-        expect(component.textContent).toBe(undefined);
+        // renderer.act(() => {  });
+        // expect(component.textContent).toBe(undefined);
+        let button=component.toTree().rendered.rendered.rendered
+        expect(button.type).toBe("button")
+        expect(button.props.children.type).toBe("img")
     });
 
     // it("render with message", () => {
