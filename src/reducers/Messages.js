@@ -1,4 +1,4 @@
-const messages = (state = [], action) => {
+const Messages = (state = [], action) => {
     switch (action.type) {
       case 'SET_ERROR':
         return [
@@ -13,4 +13,4 @@ const messages = (state = [], action) => {
     }
   }
   
-  export default messages
+  export default Messages

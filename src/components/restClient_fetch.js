@@ -25,9 +25,9 @@ function auth() {
 }
 
 function post(body) {
-  const config = cloneDeep(postConfig)
-  config.body=body
-  return config
+  const postCfg = cloneDeep(postConfig)
+  postCfg.body=body
+  return postCfg
 }
 
 export async function restApi_CartAdd(product) {

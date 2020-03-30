@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import renderer from 'react-test-renderer';
 import { setError } from '../actions'
 
-import Messages from "./messages";
+import Messages from "./Messages";
 
 const mockStore = configureStore([]);
 

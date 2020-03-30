@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
-import Products from './components/product/products';
+import ProductList from './components/product/ProductList';
 import Cart from './components/cart/cart';
-import Messages from './components/messages';
+import Messages from './components/Messages';
 import InfoBox from './components/infoBox';
 
 import { createStore } from 'redux'
@@ -46,7 +46,7 @@ export default class App extends Component {
                         <InfoBox restClientHandler={this.restClientHandler}/>
                     </div>
                     <div className="floatLeft box">
-                        <Products reloadCart={this.reloadCart} restClient={this.state.restClient}/>
+                        <ProductList reloadCart={this.reloadCart} restClient={this.state.restClient}/>
                     </div>
                     <div className="floatLeft box">
                         <Cart restClient={this.state.restClient} reload={this.state.reloadCart}/>

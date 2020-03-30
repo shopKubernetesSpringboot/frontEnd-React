@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import messages from './errorMessage'
+import messages from './Messages'
 // import visibilityFilter from './visibilityFilter'
 
 export default combineReducers({
