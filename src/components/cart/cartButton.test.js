@@ -25,7 +25,7 @@ describe('CartButton', () => {
     let wrapper;
 
     beforeEach(() => {
-        reloadCartSpy = jest.fn()
+        reloadCartSpy = jest.fn()  //todo reloadCart callback not testes
         global.fetch = jest.fn()
     });
      

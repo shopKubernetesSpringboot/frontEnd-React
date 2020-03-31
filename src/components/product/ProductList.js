@@ -12,8 +12,7 @@ class ProductListRender extends React.Component {
 
         this.state = {
             search: '',
-            lastSearch: '',
-            products: []
+            products: props.products?props.products:[]  //initialization just for testing
         }
     }
 
