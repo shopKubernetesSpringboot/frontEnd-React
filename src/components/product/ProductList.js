@@ -20,10 +20,11 @@ class ProductListRender extends React.Component {
         this.loadProducts('')
     }
 
-    loadProducts(search) {
+    loadProducts() {
         this.props.setError({ msg: '', error: ''});
         const errorMsg='Can\'t load products!';
-        load(this.props.restClient,search).then(
+        load(this.props.restClient,this.state.search)
+        .then(
           (data) => this.setState({ products: data }),
           (onRejectReason) => this.props.setError({ msg: errorMsg, error: onRejectReason })
         ).catch((error) => this.props.setError({ msg: errorMsg, error: error }))
@@ -31,16 +32,13 @@ class ProductListRender extends React.Component {
     
     handleChange(e) {
         const searchValue = e.target.value
-        if (this.state.search!==searchValue) {
-            this.setState({ search: searchValue})
-            this.loadProducts(searchValue)
-        }
+        this.setState({search: searchValue}, () => this.loadProducts())
     }
 
     render() {
         return (
             <div className="innerBox">
-                <center><h4>Product List</h4></center>
+                <center><h4 onClick={this.loadProducts.bind(this)}>Product List</h4></center>
                 {this.state.products.length>0 && 
                     <div className="sep"><input placeholder="Search for..." value={this.state.search} onChange={(e) => {this.handleChange(e)}}></input></div>
                 }

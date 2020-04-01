@@ -5,8 +5,8 @@ export default class RestClient extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            restClient: this.props.client==='Fetch'?'Fetch':'Axios',
-            isRestClientAxios: true
+            restClient: props.restClient,
+            isRestClientAxios: props.restClient==='Axios'
         }
     }
 

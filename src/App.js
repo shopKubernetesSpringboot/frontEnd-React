@@ -43,13 +43,13 @@ export default class App extends Component {
                     <Messages/>
 
                     <div className="floatLeft box">
-                        <InfoBox restClientHandler={this.restClientHandler}/>
+                        <InfoBox restClientHandler={this.restClientHandler} restClient={this.state.restClient}/>
                     </div>
                     <div className="floatLeft box">
                         <ProductList reloadCart={this.reloadCart} restClient={this.state.restClient}/>
                     </div>
                     <div className="floatLeft box">
-                        <Cart restClient={this.state.restClient} reload={this.state.reloadCart}/>
+                        <Cart reload={this.state.reloadCart} restClient={this.state.restClient}/>
                     </div>
                 </div>
             </Provider>

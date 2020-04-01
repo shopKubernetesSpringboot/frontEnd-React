@@ -110,4 +110,6 @@ Added [Travis-ci build](https://travis-ci.com/github/davidgfolch/shop-web) and s
 
 https://www.npmjs.com/package/enzyme-adapter-react-16
 
+https://enzymejs.github.io/enzyme/docs/api/ReactWrapper/at.html
+
 `yarn add --D enzyme enzyme-adapter-react-16`
