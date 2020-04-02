@@ -14,7 +14,6 @@ const rest = axios.create({
   })
 
 export function load(restClient,search) {
-    console.log(restClient)
     if (restClient==='Axios')
         return rest.get(host+'/product/'+(search===''?'list':'find/'+search)).then((res) => res.data)
     else

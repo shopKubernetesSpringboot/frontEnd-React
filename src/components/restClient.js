@@ -1,19 +1,23 @@
 import React from 'react';
 
+const AXIOS='Axios'
+const FETCH='Fetch'
+
 export default class RestClient extends React.Component {
+
 
     constructor(props) {
         super(props)
         this.state = {
             restClient: props.restClient,
-            isRestClientAxios: props.restClient==='Axios'
+            isRestClientAxios: props.restClient===AXIOS
         }
     }
 
     toggleRestClient() {
-        this.setState({restClient: this.state.restClient==='Axios'?'Fetch':'Axios' },
+        this.setState({restClient: this.state.restClient===AXIOS?FETCH:AXIOS },
             () => {
-                this.setState({isRestClientAxios: this.state.restClient==='Axios'})
+                this.setState({isRestClientAxios: this.state.restClient===AXIOS})
                 this.props.handler(this.state.restClient)
             })
     }

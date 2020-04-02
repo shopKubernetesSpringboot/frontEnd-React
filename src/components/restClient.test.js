@@ -19,17 +19,17 @@ afterEach(() => {
 });
 
 it("render with default option", () => {
-    act(() => {render(<RestClient />, container)});
+    act(() => {render(<RestClient restClient='Axios'/>, container)});
     expect(container.textContent).toContain("Axios Rest Client:");
 });
 it("render with Fetch option", () => {
-    act(() => {render(<RestClient client='Fetch'/>, container)});
+    act(() => {render(<RestClient restClient='Fetch'/>, container)});
     expect(container.textContent).toContain("Fetch Rest Client:");
 });
 
 it("render clicked option", () => {
     const handler=jest.fn()
-    act(() => {render(<RestClient handler={handler}/>, container)});
+    act(() => {render(<RestClient handler={handler} restClient='Axios'/>, container)});
   
     const button = document.querySelector("#fetchButton");
     expect(button.innerHTML).toBe("Fetch");

@@ -28,19 +28,10 @@ class CartRender extends React.Component {
   list() {
     this.props.setError({ msg: '', error: ''});
     const errorMsg='Can\'t load cart data!';
-    console.log(this.props.restClient)
     list(this.props.restClient).then(
-      (data) => {
-        console.log("cartList data")
-        console.log(data)
-        this.setState({ cart: data })
-      },
-      (onRejectReason) => {
-        console.log("cartList onrejectReason")
-        this.props.setError({ msg: errorMsg, error: onRejectReason })
-      }
+      (data) => this.setState({ cart: data }),
+      (onRejectReason) => this.props.setError({ msg: errorMsg, error: onRejectReason })
     ).catch((error) => {
-      console.log("cartList error")
       this.props.setError({ msg: errorMsg, error: error })
     })
   }
