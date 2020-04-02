@@ -29,7 +29,7 @@ class CartRender extends React.Component {
     this.props.setError({ msg: '', error: ''});
     const errorMsg='Can\'t load cart data!';
     list(this.props.restClient).then(
-      (data) => { console.log("list->list->then"); this.setState({ cart: data }) },
+      (data) => this.setState({ cart: data }),
       (onRejectReason) => this.props.setError({ msg: errorMsg, error: onRejectReason })
     ).catch((error) => this.props.setError({ msg: errorMsg, error: error }) )
   }
@@ -38,7 +38,7 @@ class CartRender extends React.Component {
     const errorMsg='Can\'t clean cart!';
     this.props.setError({ msg: '', error: ''});
     clean(this.props.restClient).then(
-      () => { console.log("cleanCart->clean->then"); this.list() }, //onFullFilled
+      () => this.list(), //onFullFilled
       (onRejectReason) => this.props.setError({ msg: errorMsg, error: onRejectReason })
     ).catch((error) => this.props.setError({ msg: errorMsg, error: error }))
   }
