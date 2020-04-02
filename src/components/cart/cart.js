@@ -12,7 +12,7 @@ class CartRender extends React.Component {
     super(props);
 
     this.state = {
-        cart: [],
+        cart: props.items?props.items:[],  //initialization just for testing
         reload: props.reload
     }
   }

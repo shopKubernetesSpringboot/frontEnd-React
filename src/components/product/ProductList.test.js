@@ -1,12 +1,10 @@
 import React from "react";
-import { render, unmountComponentAtNode } from "react-dom";
-import { act } from "react-dom/test-utils";
-import Enzyme, { shallow, mount } from 'enzyme';
+import { unmountComponentAtNode } from "react-dom";
+import Enzyme, { mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16'
 
 import configureStore from 'redux-mock-store'
 import { Provider } from 'react-redux';
-import renderer from 'react-test-renderer';
 
 import ProductList from "./ProductList";
 
@@ -32,17 +30,7 @@ describe('My Connected React-Redux Component', () => {
         container = null;
     });
 
-    // it("render (Axios)", () => {
-    //     store = mockStore();
-    //     let restClient='Axios';
-    //     let wrapper = mount(
-    //           <ProductList reloadCart={reloadCart} restClient={restClient} store={store}/>
-    //       );
-    //     wrapper.setState({ products: [ {id: 'xxx', name: 'yyy'} ]})
-    //     expect(wrapper.find("h4").exists()).toBeTruthy();
-    // });
-
-    it("render (Fetch)", () => {
+    it("render", () => {
         store = mockStore()
         let restClient='Fetch'
         let wrapper = mount(
