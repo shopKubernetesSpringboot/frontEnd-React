@@ -25,33 +25,44 @@ class ProductListRender extends React.Component {
         const errorMsg='Can\'t load products!';
         load(this.props.restClient,this.state.search)
         .then(
-          (data) => this.setState({ products: data }),
+          (data) => { if (this.props.mounted) this.setState({ products: data }) },
           (onRejectReason) => this.props.setError({ msg: errorMsg, error: onRejectReason })
         ).catch((error) => this.props.setError({ msg: errorMsg, error: error }))
     }
     
     handleChange(e) {
-        const searchValue = e.target.value
-        this.setState({search: searchValue}, () => this.loadProducts())
+        if (this.props.mounted) {
+            const searchValue = e.target.value
+            this.setState({search: searchValue}, () => this.loadProducts())    
+        }
     }
 
     render() {
-        return (
-            <div className="innerBox">
-                <center><h4 onClick={this.loadProducts.bind(this)}>Product List</h4></center>
-                {this.state.products.length>0 && 
-                    <div className="sep"><input placeholder="Search for..." value={this.state.search} onChange={(e) => {this.handleChange(e)}}></input></div>
-                }
-                {this.state.products.map((product) => (
-                    <div className="sep" key={product.id}>
-                        <div className="floatRight">
-                            <CartButton reloadCart={this.props.reloadCart} product={product} restClient={this.props.restClient}/>
+        if (this.state.products) {
+            return (
+                <div className="innerBox">
+                    <center><h4 onClick={this.loadProducts.bind(this)}>Product List</h4></center>
+                    {this.state.products.length>0 && 
+                        <div className="sep"><input placeholder="Search for..." value={this.state.search} onChange={(e) => {this.handleChange(e)}}></input></div>
+                    }
+                    {this.state.products.map((product) => (
+                        <div className="sep" key={product.id}>
+                            <div className="floatRight">
+                                <CartButton reloadCart={this.props.reloadCart} product={product} restClient={this.props.restClient}/>
+                            </div>
+                            <div>{product.name}</div>
                         </div>
-                        <div>{product.name}</div>
-                    </div>
-                ))}
-            </div>
-        )
+                    ))}
+                </div>
+            )
+        } else {
+            return (
+                <div className="innerBox">
+                    <center><h4 onClick={this.loadProducts.bind(this)}>Product List</h4></center>
+                    <div className="sep">Failed to get products data</div>
+                </div>
+            )
+        }      
     }
 }
 

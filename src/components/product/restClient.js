@@ -3,7 +3,7 @@ import { getConfig } from "../restClient_fetch";
 
 const host='http://localhost:8081'
 
-const rest = axios.create({
+export const rest = axios.create({
     baseURL: host,
     timeout: 2000,
     auth: {

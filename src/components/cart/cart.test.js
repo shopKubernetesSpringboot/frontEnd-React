@@ -16,7 +16,7 @@ Enzyme.configure({ adapter: new Adapter() });
 
 const trashButtonSelector = "div.innerBox div.cartSummary button img[src='trash.svg']";
 
-describe('My Connected React-Redux Component', () => {
+describe('Cart (React-Redux) Component', () => {
     let store = mockStore();
     let reloadCart = jest.fn()
     let items = [ {id: 'testProductId1', name: 'testProductName2', quantity: 1}, {id: 'testProductId2', name: 'testProductName2', quantity: 2} ]
