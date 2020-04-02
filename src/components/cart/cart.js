@@ -29,16 +29,16 @@ class CartRender extends React.Component {
     this.props.setError({ msg: '', error: ''});
     const errorMsg='Can\'t load cart data!';
     list(this.props.restClient).then(
-      (data) => this.setState({ cart: data }),
+      (data) => { console.log("list->list->then"); this.setState({ cart: data }) },
       (onRejectReason) => this.props.setError({ msg: errorMsg, error: onRejectReason })
     ).catch((error) => this.props.setError({ msg: errorMsg, error: error }) )
   }
 
-  clean() {
+  cleanCart() {
     const errorMsg='Can\'t clean cart!';
     this.props.setError({ msg: '', error: ''});
     clean(this.props.restClient).then(
-      () => this.list(), //onFullFilled
+      () => { console.log("cleanCart->clean->then"); this.list() }, //onFullFilled
       (onRejectReason) => this.props.setError({ msg: errorMsg, error: onRejectReason })
     ).catch((error) => this.props.setError({ msg: errorMsg, error: error }))
   }
@@ -52,7 +52,7 @@ class CartRender extends React.Component {
               <div className="cartSummary">
                 <div className="floatRight cartSummary">
                   <button type="button" className="btn btn-primary btn-sm marginRight"
-                    onClick={this.clean.bind(this,this.props.updateCartFnc,this.props.restClient)}>
+                    onClick={this.cleanCart.bind(this,this.props.updateCartFnc,this.props.restClient)}>
                     <img src={trashIcon} alt="+" className="icon"/>
                   </button>
                   <button type="button" className="btn btn-primary btn-sm">

@@ -6,7 +6,7 @@ const host='http://localhost:8080'
 // let CSRF_TOKEN=''
 // let SESSION=''
 
-const rest = axios.create({
+export const rest = axios.create({
     baseURL: host,
     timeout: 2000,
     auth: {
@@ -28,6 +28,13 @@ const rest = axios.create({
 //         SESSION=Cookies.get('SESSION')
 //         rest.defaults.headers.common['SESSION'] = SESSION
 //     }
+// }
+
+// export async function list(restClient) {
+//     if (restClient==='Axios') {
+//         const res = await rest.get('/cart/list');
+//         return res.data;
+//     } else return restApi_CartList()
 // }
 
 export function list(restClient) {
@@ -59,5 +66,4 @@ async function restApi_CartList() {
     const res = await fetch(host+'/cart/list', getConfig)
     return await res.json();
 }
-  
   
