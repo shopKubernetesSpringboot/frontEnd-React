@@ -36,12 +36,24 @@ describe('My Connected React-Redux Component', () => {
         store = mockStore()
         let wrapper = mount(
             <Provider store={store}>
-              <Cart reload={reloadCart} restClient={'Axios'}/>
+              <Cart reload={reloadCart} restClient={'Axios'} items={[]}/>
             </Provider>
           );
         expect(wrapper.find("h4").exists()).toBeTruthy();
         // expect(wrapper.find("div.innerBox div div").at(1)).toHaveTextContent(products[0].name);
         expect(wrapper.find("div.innerBox div").at(0).getDOMNode()).toHaveTextContent('Cart is empty');
+    });
+
+    it("render failed to get cart data", () => {
+        store = mockStore()
+        let wrapper = mount(
+            <Provider store={store}>
+              <Cart reload={reloadCart} restClient={'Axios'}/>
+            </Provider>
+          );
+        expect(wrapper.find("h4").exists()).toBeTruthy();
+        // expect(wrapper.find("div.innerBox div div").at(1)).toHaveTextContent(products[0].name);
+        expect(wrapper.find("div.innerBox div").at(0).getDOMNode()).toHaveTextContent('Failed to get cart data');
     });
 
     it("render cart list", () => {
