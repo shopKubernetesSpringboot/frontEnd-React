@@ -1,14 +1,13 @@
 import React from "react";
-import { render, unmountComponentAtNode } from "react-dom";
-import { act } from "react-dom/test-utils";
-import Enzyme, { shallow, mount } from 'enzyme';
+import { unmountComponentAtNode } from "react-dom";
+import Enzyme, { mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16'
 
 import configureStore from 'redux-mock-store'
 import { Provider } from 'react-redux';
-import renderer from 'react-test-renderer';
 
 import Cart from "./cart";
+// import { list, clean } from './restClient'
 
 const mockStore = configureStore([]);
 Enzyme.configure({ adapter: new Adapter() });
@@ -82,7 +81,17 @@ describe('My Connected React-Redux Component', () => {
         expect(wrapper.find("div.innerBox div.cartSummary button").length).toBe(items.length+1);
         let trashButton=wrapper.find("div.innerBox div.cartSummary button img[src='trash.svg']")
         expect(trashButton.length).toBe(1);
+        // jest.mock('list');
+        // list.mockResolvedValue(Promise.resolve({}))
+        jest.mock('./restClient'); // this happens automatically with automocking
+        const restClient = require('./restClient');
+        restClient.clean.mockImplementation(() => Promise.resolve({}));
         trashButton.simulate('click')
+        // trashButton.invoke('onClick')
+        wrapper.update()
+        // wrapper.render()
+        // expect(restClient.clean.mock.calls.length).toBe(1);
+        // console.log(wrapper.find('CartRender').debug({verbose:true}))
         // expect(wrapper.find("div.innerBox div").at(0).getDOMNode()).toHaveTextContent('Cart is empty');
     });
 

@@ -31,9 +31,7 @@ class CartRender extends React.Component {
     list(this.props.restClient).then(
       (data) => this.setState({ cart: data }),
       (onRejectReason) => this.props.setError({ msg: errorMsg, error: onRejectReason })
-    ).catch((error) => {
-      this.props.setError({ msg: errorMsg, error: error })
-    })
+    ).catch((error) => this.props.setError({ msg: errorMsg, error: error }) )
   }
 
   clean() {
