@@ -67,9 +67,23 @@ describe('My Connected React-Redux Component', () => {
         // console.log(wrapper.debug({verbose:true}))
         // console.log(wrapper.find('.cartSummary').debug({verbose:true}))
         expect(wrapper.find("div.innerBox div.cartSummary").at(0).getDOMNode()).toHaveTextContent('1 Items1 Products');
-        expect(wrapper.find("div.innerBox div.cartSummary button").length).toBe(2);
+        expect(wrapper.find("div.innerBox div.cartSummary button").length).toBe(items.length+1);
         expect(wrapper.find("div.innerBox div.cartSummary button img[src='trash.svg']").length).toBe(1);
         expect(wrapper.find("div.innerBox div.cartSummary button img[src='ok.svg']").length).toBe(1);
+    });
+
+    it("clean button", () => {
+        store = mockStore()
+        let wrapper = mount(
+            <Provider store={store}>
+              <Cart reload={reloadCart} restClient={'Axios'} items={items}/>
+            </Provider>
+          );
+        expect(wrapper.find("div.innerBox div.cartSummary button").length).toBe(items.length+1);
+        let trashButton=wrapper.find("div.innerBox div.cartSummary button img[src='trash.svg']")
+        expect(trashButton.length).toBe(1);
+        trashButton.simulate('click')
+        // expect(wrapper.find("div.innerBox div").at(0).getDOMNode()).toHaveTextContent('Cart is empty');
     });
 
 })
