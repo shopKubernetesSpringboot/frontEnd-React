@@ -12,7 +12,7 @@ class ProductListRender extends React.Component {
 
         this.state = {
             search: '',
-            products: props.products?props.products:[]  //initialization just for testing
+            products: props.products  //initialization just for testing
         }
     }
 
@@ -25,16 +25,14 @@ class ProductListRender extends React.Component {
         const errorMsg='Can\'t load products!';
         load(this.props.restClient,this.state.search)
         .then(
-          (data) => { if (this.props.mounted) this.setState({ products: data }) },
+          (data) => this.setState({ products: data }),
           (onRejectReason) => this.props.setError({ msg: errorMsg, error: onRejectReason })
         ).catch((error) => this.props.setError({ msg: errorMsg, error: error }))
     }
     
     handleChange(e) {
-        if (this.props.mounted) {
-            const searchValue = e.target.value
-            this.setState({search: searchValue}, () => this.loadProducts())    
-        }
+        const searchValue = e.target.value
+        this.setState({search: searchValue}, () => this.loadProducts())    
     }
 
     render() {
@@ -42,8 +40,9 @@ class ProductListRender extends React.Component {
             return (
                 <div className="innerBox">
                     <center><h4 onClick={this.loadProducts.bind(this)}>Product List</h4></center>
-                    {this.state.products.length>0 && 
-                        <div className="sep"><input placeholder="Search for..." value={this.state.search} onChange={(e) => {this.handleChange(e)}}></input></div>
+                    <div className="sep"><input placeholder="Search for..." value={this.state.search} onChange={(e) => {this.handleChange(e)}}></input></div>
+                    {this.state.products.length === 0 && 
+                        <div className="sep">No products found</div>
                     }
                     {this.state.products.map((product) => (
                         <div className="sep" key={product.id}>
