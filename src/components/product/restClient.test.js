@@ -13,6 +13,7 @@ Enzyme.configure({ adapter: new Adapter() });
 describe('ProductList (React-Redux) Component', () => {
     axiosMock.onGet().reply(200, []);
     axiosMock.onOptions().reply(200);
+    
     global.fetch = jest.fn()
     const mockJsonPromise = Promise.resolve([]);
     const mockFetchPromise = Promise.resolve({
@@ -21,17 +22,13 @@ describe('ProductList (React-Redux) Component', () => {
     jest.spyOn(global, 'fetch').mockImplementation(() => mockFetchPromise);
 
     it("fetch", ()=> {
-        let res=restClientModules.load('Fetch','')
-        expect(res).toStrictEqual(mockJsonPromise);
-        res=restClientModules.load('Fetch','xx')
-        expect(res).toStrictEqual(mockJsonPromise);
+        expect(restClientModules.load('Fetch','')).toStrictEqual(mockJsonPromise);
+        expect(restClientModules.load('Fetch','xx')).toStrictEqual(mockJsonPromise);
     })
 
     it("axios", ()=> {
-        let res=restClientModules.load('Axios','')
-        expect(res).toStrictEqual(mockJsonPromise);
-        res=restClientModules.load('Axios','xx')
-        expect(res).toStrictEqual(mockJsonPromise);
+        expect(restClientModules.load('Axios','')).toStrictEqual(mockJsonPromise);
+        expect(restClientModules.load('Axios','xx')).toStrictEqual(mockJsonPromise);
     })
 
 })
