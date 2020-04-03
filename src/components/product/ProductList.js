@@ -1,11 +1,11 @@
 import React from 'react'
-import CartButton from '../cart/cartButton'
+import CartButton from '../cart/CartButton'
 import { load } from "./restClient";
 
 import { connect } from "react-redux";
 import { setError_mapDispatchToProps } from '../../actions/index'
 
-class ProductListRender extends React.Component {
+class ProductListComp extends React.Component {
 
     constructor(props) {
         super(props);
@@ -68,6 +68,6 @@ class ProductListRender extends React.Component {
 const ProductList = connect(
     null,
     setError_mapDispatchToProps
-  )(ProductListRender);
+  )(ProductListComp);
 export default ProductList
   

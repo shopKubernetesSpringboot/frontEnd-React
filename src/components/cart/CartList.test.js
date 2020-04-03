@@ -6,7 +6,7 @@ import configureStore from 'redux-mock-store'
 
 import MockAdapter from 'axios-mock-adapter';
 
-import Cart from "./cart";
+import CartList from "./CartList";
 import * as restClientModules from './restClient';
 
 const axiosMock = new MockAdapter(restClientModules.rest);
@@ -22,19 +22,19 @@ describe('Cart (React-Redux) Component', () => {
     let items = [ {id: 'testProductId1', name: 'testProductName2', quantity: 1}, {id: 'testProductId2', name: 'testProductName2', quantity: 2} ]
     
     it("render empty cart", () => {
-        const wrapper = mount(<Cart reload={reloadCart} restClient={'Axios'} items={[]} store={store}/>);
+        const wrapper = mount(<CartList reload={reloadCart} restClient={'Axios'} items={[]} store={store}/>);
         expect(wrapper.find("h4").exists()).toBeTruthy();
         expect(wrapper.find("div.innerBox div").at(0).getDOMNode()).toHaveTextContent('Cart is empty');
     });
 
     it("render failed to get cart data", () => {
-        const wrapper = mount(<Cart reload={reloadCart} restClient={'Axios'} store={store}/>);
+        const wrapper = mount(<CartList reload={reloadCart} restClient={'Axios'} store={store}/>);
         expect(wrapper.find("h4").exists()).toBeTruthy();
         expect(wrapper.find("div.innerBox div").at(0).getDOMNode()).toHaveTextContent('Failed to get cart data');
     });
 
     it("render cart list", () => {
-        const wrapper = mount(<Cart reload={reloadCart} restClient={'Axios'} items={items} store={store}/>);
+        const wrapper = mount(<CartList reload={reloadCart} restClient={'Axios'} items={items} store={store}/>);
         // console.log(wrapper.debug({verbose:true}))
         // console.log(wrapper.find('.cartSummary').debug({verbose:true}))
         expect(wrapper.find("h4").exists()).toBeTruthy();
@@ -48,7 +48,7 @@ describe('Cart (React-Redux) Component', () => {
     it("rest functions", () => {
         axiosMock.onGet().reply(200, []);
         axiosMock.onOptions().reply(200);
-        const wrapper = mount(<Cart reload={reloadCart} restClient={'Axios'} items={items} store={store}/>);
+        const wrapper = mount(<CartList reload={reloadCart} restClient={'Axios'} items={items} store={store}/>);
         let trashButton=wrapper.find(trashButtonSelector)
         expect(trashButton.length).toBe(1);
 

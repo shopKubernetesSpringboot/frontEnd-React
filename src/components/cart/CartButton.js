@@ -9,11 +9,10 @@ class CartButtonComp extends React.Component {
 
     restCartAdd() {
         let errorMsg='Can\'t add data to cart!'
-        add(this.props.restClient, this.props.product)
-                    .then(
-                        () => this.props.reloadCart(),
-                        (onRejectReason) => this.props.setError({ msg: errorMsg, error: onRejectReason })
-                    ).catch((error) => this.props.setError({ msg: errorMsg, error: error }))
+        add(this.props.restClient, this.props.product).then(
+            () => this.props.reloadCart(),
+            (onRejectReason) => this.props.setError({ msg: errorMsg, error: onRejectReason })
+        ).catch((error) => this.props.setError({ msg: errorMsg, error: error }))
     }
   
     render() {

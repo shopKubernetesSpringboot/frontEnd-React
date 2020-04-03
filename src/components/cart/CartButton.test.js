@@ -4,28 +4,23 @@ import Adapter from 'enzyme-adapter-react-16'
 
 import configureStore from 'redux-mock-store'
 
-import CartButton from "./cartButton";
+import MockAdapter from 'axios-mock-adapter';
+
+import CartButton from "./CartButton";
+import * as restClientModules from './restClient';
+
+const axiosMock = new MockAdapter(restClientModules.rest);
 
 const mockStore = configureStore([]);
 Enzyme.configure({ adapter: new Adapter() });
 
 describe('CartButton', () => {
-    let store;
-    let reloadCartSpy;
+    let store = mockStore({})
+    let wrapper;
+    let reloadCartSpy = jest.fn()  //todo reloadCart callback not testes
     let product = { id: "productId", name: "productName" }
 
-    beforeAll(() => {
-        store = mockStore({})
-        // store = mockStore({
-        //     messages: [],
-        // });
-        // store.dispatch = jest.fn();
-    });
-
-    let wrapper;
-
     beforeEach(() => {
-        reloadCartSpy = jest.fn()  //todo reloadCart callback not testes
         global.fetch = jest.fn()
     });
      
@@ -34,11 +29,11 @@ describe('CartButton', () => {
 
     it("render with Fetch", () => {
         const mockSuccessResponse = { data: {} };
-        const mockJsonPromise = Promise.resolve(mockSuccessResponse); // 2
-        const mockFetchPromise = Promise.resolve({ // 3
+        const mockJsonPromise = Promise.resolve(mockSuccessResponse);
+        const mockFetchPromise = Promise.resolve({
           json: () => mockJsonPromise,
         });
-        jest.spyOn(global, 'fetch').mockImplementation(() => mockFetchPromise); // 4
+        jest.spyOn(global, 'fetch').mockImplementation(() => mockFetchPromise);
 
         wrapper = mount(<CartButton  store={store} reloadCart={reloadCartSpy} product={product} restClient={'Fetch'}/>);
         wrapper.restApi_CartAdd = jest.fn(() => mockJsonPromise)
@@ -46,17 +41,22 @@ describe('CartButton', () => {
         expect(wrapper.find("img").exists()).toBeTruthy();
         wrapper.find("button").simulate('click')
         expect(global.fetch).toHaveBeenCalled()
-        // expect(reloadCartSpy).toHaveBeenCalled()
         wrapper.unmount();
     });
 
     it("render with Axios", () => {
+        axiosMock.onPost().reply(200);
         wrapper = mount(<CartButton  store={store} reloadCart={reloadCartSpy} product={product} restClient={'Axios'}/>);
         expect(wrapper.find("button").exists()).toBeTruthy();
         expect(wrapper.find("img").exists()).toBeTruthy();
         wrapper.find("button").simulate('click')
         expect(global.fetch).not.toHaveBeenCalled()
-        // expect(reloadCartSpy).toHaveBeenCalled()
+
+        //rejected request
+        restClientModules.add = jest.fn().mockReturnValue(Promise.reject('rejectReason'))
+        wrapper.find("button").simulate('click')
+        expect(restClientModules.add.mock.calls.length).toBe(1);
+        
         wrapper.unmount();
     });
 

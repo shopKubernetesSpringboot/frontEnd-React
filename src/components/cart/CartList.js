@@ -6,7 +6,7 @@ import { list, clean } from "./restClient";
 import { connect } from "react-redux";
 import { setError_mapDispatchToProps } from '../../actions/index'
 
-class CartRender extends React.Component {
+class CartListComp extends React.Component {
 
   constructor(props) {
     super(props);
@@ -94,8 +94,8 @@ class CartRender extends React.Component {
   }
 }
 
-const Cart = connect(
+const CartList = connect(
   null,
   setError_mapDispatchToProps
-)(CartRender);
-export default Cart
+)(CartListComp);
+export default CartList

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import ProductList from './components/product/ProductList';
-import Cart from './components/cart/cart';
+import Cart from './components/cart/CartList';
 import Messages from './components/Messages';
 import InfoBox from './components/infoBox';
 
