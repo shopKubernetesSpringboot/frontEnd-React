@@ -16,21 +16,38 @@ describe('ProductList (React-Redux) Component', () => {
     global.fetch = jest.fn()
     const mockJsonPromise = Promise.resolve([]);
     const mockFetchPromise = Promise.resolve({
-      json: () => mockJsonPromise,
+        json: () => mockJsonPromise,
     });
     jest.spyOn(global, 'fetch').mockImplementation(() => mockFetchPromise);
+    const product = { id: 'testProductId1', name: 'testProductName2', quantity: 1 }
 
-    it("fetch", ()=> {
-        let res=restClientModules.load('Fetch','')
-        expect(res).toStrictEqual(mockJsonPromise);
-        res=restClientModules.load('Fetch','xx')
+    it("list (fetch)", () => {
+        let res = restClientModules.list('Fetch')
         expect(res).toStrictEqual(mockJsonPromise);
     })
 
-    it("axios", ()=> {
-        let res=restClientModules.load('Axios','')
+    it("list (axios)", () => {
+        let res = restClientModules.list('Axios')
         expect(res).toStrictEqual(mockJsonPromise);
-        res=restClientModules.load('Axios','xx')
+    })
+
+    it("add (fetch)", () => {
+        let res = restClientModules.add('Fetch', product)
+        expect(res).toStrictEqual(mockJsonPromise);
+    })
+
+    it("add (axios)", () => {
+        let res = restClientModules.add('Axios', product)
+        expect(res).toStrictEqual(mockJsonPromise);
+    })
+
+    it("clean (fetch)", () => {
+        let res = restClientModules.clean('Fetch')
+        expect(res).toStrictEqual(mockJsonPromise);
+    })
+
+    it("clean (axios)", () => {
+        let res = restClientModules.clean('Axios')
         expect(res).toStrictEqual(mockJsonPromise);
     })
 
