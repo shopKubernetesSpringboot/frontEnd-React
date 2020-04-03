@@ -3,7 +3,7 @@ import React from 'react';
 const AXIOS='Axios'
 const FETCH='Fetch'
 
-export default class RestClient extends React.Component {
+export default class RestClientComp extends React.Component {
 
 
     constructor(props) {

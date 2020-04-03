@@ -36,7 +36,7 @@ describe('CartButton', () => {
         jest.spyOn(global, 'fetch').mockImplementation(() => mockFetchPromise);
 
         wrapper = mount(<CartButton  store={store} reloadCart={reloadCartSpy} product={product} restClient={'Fetch'}/>);
-        wrapper.restApi_CartAdd = jest.fn(() => mockJsonPromise)
+        wrapper.restApi_CartAdd = jest.fn(() => mockJsonPromise) //todo check this line (not needed, don't exists)
         expect(wrapper.find("button").exists()).toBeTruthy();
         expect(wrapper.find("img").exists()).toBeTruthy();
         wrapper.find("button").simulate('click')

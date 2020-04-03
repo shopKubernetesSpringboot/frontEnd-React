@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import ProductList from './components/product/ProductList';
 import Cart from './components/cart/CartList';
-import Messages from './components/Messages';
-import InfoBox from './components/infoBox';
+import MessagesRedux from './components/Messages';
+import InfoBox from './components/InfoBox';
 
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
@@ -40,7 +40,7 @@ export default class App extends Component {
         return (
             <Provider store={this.store}>
                 <div className="main">
-                    <Messages/>
+                    <MessagesRedux/>
 
                     <div className="floatLeft box">
                         <InfoBox restClientHandler={this.restClientHandler} restClient={this.state.restClient}/>

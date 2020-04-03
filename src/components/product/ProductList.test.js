@@ -18,7 +18,25 @@ describe('ProductList (React-Redux) Component', () => {
     let store = mockStore()
     let reloadCart = jest.fn()
     let products = [ {id: 'testProductId', name: 'testProductName'} ]
-    
+
+    it("fetch", ()=> { //must be the first test to avoid restClientModules.load mock
+        global.fetch = jest.fn()
+        // restClientModules.load.mockClear()
+        // restClientModules.load.mockRestore()
+        const mockJsonPromise = Promise.resolve([]);
+        const mockFetchPromise = Promise.resolve({
+          json: () => mockJsonPromise,
+        });
+        jest.spyOn(global, 'fetch').mockImplementation(() => mockFetchPromise);
+        let res=restClientModules.load('Fetch','')
+        expect(res).toStrictEqual(mockJsonPromise);
+        const wrapper = mount(
+            <Provider store={store}>
+                <ProductList reloadCart={reloadCart} restClient={'Fetch'} products={products}/>
+            </Provider>);
+        expect(wrapper.find("div.innerBox div div").at(1).getDOMNode()).toHaveTextContent(products[0].name);
+    })
+
     it("render", () => {
         axiosMock.onGet().reply(200, []);
         axiosMock.onOptions().reply(200);
@@ -72,6 +90,5 @@ describe('ProductList (React-Redux) Component', () => {
 
         //todo exception request (with fetch I think)
       });
-
 
 })

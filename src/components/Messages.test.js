@@ -1,11 +1,9 @@
 import React from "react";
-import { render, unmountComponentAtNode } from "react-dom";
-import { act } from "react-dom/test-utils";
+import { unmountComponentAtNode } from "react-dom";
 
 import configureStore from 'redux-mock-store'
 import { Provider } from 'react-redux';
 import renderer from 'react-test-renderer';
-import { setError } from '../actions'
 
 import Messages from "./Messages";
 

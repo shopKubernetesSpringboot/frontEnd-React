@@ -1,8 +1,8 @@
 import React from 'react'
 import logo from '../logo.svg';
-import RestClient from './restClient';
+import RestClientComp from './RestClient';
 
-class InfoBox extends React.Component {
+class InfoBoxComp extends React.Component {
 
     render() {
         return (
@@ -14,11 +14,11 @@ class InfoBox extends React.Component {
                     <hr />
                     <p>Developed by <a href="https://github.com/davidgfolch">David G. Folch</a></p>
                     <p>Icons <a href="https://github.com/danklammer/bytesize-icons">Bootstrap byte-size-icons</a></p>
-                    <RestClient handler={this.props.restClientHandler} restClient={this.props.restClient}/>
+                    <RestClientComp handler={this.props.restClientHandler} restClient={this.props.restClient}/>
                 </div>
             </div>
         );
     }
   }
 
-export default InfoBox
+export default InfoBoxComp

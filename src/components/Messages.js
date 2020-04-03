@@ -2,7 +2,7 @@ import React from 'react';
 
 import { connect } from "react-redux";
 
-class MessagesRender extends React.Component {
+class MessagesComp extends React.Component {
 
     render() {
         return (
@@ -19,6 +19,6 @@ const mapStateToProps = state => {
     return res;
 };  
 
-const Messages = connect(mapStateToProps)(MessagesRender);
+const MessagesRedux = connect(mapStateToProps)(MessagesComp);
   
-export default Messages
+export default MessagesRedux

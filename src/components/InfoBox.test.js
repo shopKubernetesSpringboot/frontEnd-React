@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from '@testing-library/react';
 
-import InfoBox from "./infoBox";
+import InfoBox from "./InfoBox";
 
 test("render with default option", () => {
     const { getByText } = render(<InfoBox />);
