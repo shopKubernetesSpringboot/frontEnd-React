@@ -25,16 +25,20 @@ describe('ProductList (React-Redux) Component', () => {
     
     const product = { id: 'testProductId1', name: 'testProductName2', quantity: 1 }
 
+    function test(res) {
+        expect(res).toStrictEqual(mockJsonPromise)
+    }
+
     it("fetch", () => {
-        expect(restClientModules.list('Fetch')).toStrictEqual(mockJsonPromise);
-        expect(restClientModules.add('Fetch', product)).toStrictEqual(mockJsonPromise);
-        expect(restClientModules.clean('Fetch')).toStrictEqual(mockJsonPromise);
+        test(restClientModules.list('Fetch'))
+        test(restClientModules.add('Fetch', product))
+        test(restClientModules.clean('Fetch'))
     })
 
     it("axios", () => {
-        expect(restClientModules.list('Axios')).toStrictEqual(mockJsonPromise);
-        expect(restClientModules.add('Axios', product)).toStrictEqual(mockJsonPromise);
-        expect(restClientModules.clean('Axios')).toStrictEqual(mockJsonPromise);
+        test(restClientModules.list('Axios'))
+        test(restClientModules.add('Axios', product))
+        test(restClientModules.clean('Axios'))
     })
 
 })

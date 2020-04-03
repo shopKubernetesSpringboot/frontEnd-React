@@ -21,14 +21,18 @@ describe('ProductList (React-Redux) Component', () => {
     });
     jest.spyOn(global, 'fetch').mockImplementation(() => mockFetchPromise);
 
+    function test(res) {
+        expect(res).toStrictEqual(mockJsonPromise)
+    }
+
     it("fetch", ()=> {
-        expect(restClientModules.load('Fetch','')).toStrictEqual(mockJsonPromise);
-        expect(restClientModules.load('Fetch','xx')).toStrictEqual(mockJsonPromise);
+        test(restClientModules.load('Fetch',''))
+        test(restClientModules.load('Fetch','xx'))
     })
 
     it("axios", ()=> {
-        expect(restClientModules.load('Axios','')).toStrictEqual(mockJsonPromise);
-        expect(restClientModules.load('Axios','xx')).toStrictEqual(mockJsonPromise);
+        test(restClientModules.load('Axios',''))
+        test(restClientModules.load('Axios','xx'))
     })
 
 })
