@@ -17,25 +17,7 @@ Enzyme.configure({ adapter: new Adapter() });
 describe('ProductList (React-Redux) Component', () => {
     let store = mockStore()
     let reloadCart = jest.fn()
-    let products = [ {id: 'testProductId', name: 'testProductName'} ]
-
-    it("fetch", ()=> { //must be the first test to avoid restClientModules.load mock
-        global.fetch = jest.fn()
-        // restClientModules.load.mockClear()
-        // restClientModules.load.mockRestore()
-        const mockJsonPromise = Promise.resolve([]);
-        const mockFetchPromise = Promise.resolve({
-          json: () => mockJsonPromise,
-        });
-        jest.spyOn(global, 'fetch').mockImplementation(() => mockFetchPromise);
-        let res=restClientModules.load('Fetch','')
-        expect(res).toStrictEqual(mockJsonPromise);
-        const wrapper = mount(
-            <Provider store={store}>
-                <ProductList reloadCart={reloadCart} restClient={'Fetch'} products={products}/>
-            </Provider>);
-        expect(wrapper.find("div.innerBox div div").at(1).getDOMNode()).toHaveTextContent(products[0].name);
-    })
+    let products = [{ id: 'testProductId', name: 'testProductName' }]
 
     it("render", () => {
         axiosMock.onGet().reply(200, []);
@@ -43,13 +25,13 @@ describe('ProductList (React-Redux) Component', () => {
         restClientModules.load = jest.fn().mockReturnValue(Promise.resolve([]))
         const wrapper = mount(
             <Provider store={store}>
-              <ProductList reloadCart={reloadCart} restClient={'Axios'} products={products}/>
+                <ProductList reloadCart={reloadCart} restClient={'Axios'} products={products} />
             </Provider>);
         // console.log(wrapper.debug({verbose:true}))
         // console.log(wrapper.find('ProductListRender').debug({verbose:true}))
         expect(wrapper.find("h4").exists()).toBeTruthy();
-        let inputSelector="[placeholder='Search for...']"
-        let inputSearch=wrapper.find(inputSelector).at(0)
+        let inputSelector = "[placeholder='Search for...']"
+        let inputSearch = wrapper.find(inputSelector).at(0)
         expect(wrapper.find("div.innerBox div div").at(1).getDOMNode()).toHaveTextContent(products[0].name);
         inputSearch.simulate('focus')
         inputSearch.simulate('change', { target: { value: 'X' } })
@@ -61,7 +43,7 @@ describe('ProductList (React-Redux) Component', () => {
     it("render Failed to get products data", () => {
         const wrapper = mount(
             <Provider store={store}>
-              <ProductList reloadCart={reloadCart} restClient={'Axios'}/>
+                <ProductList reloadCart={reloadCart} restClient={'Axios'} />
             </Provider>);
         expect(wrapper.find("div.innerBox div").at(0).getDOMNode()).toHaveTextContent('Failed to get products data');
     });
@@ -72,7 +54,7 @@ describe('ProductList (React-Redux) Component', () => {
         restClientModules.load = jest.fn().mockReturnValue(Promise.resolve(products))
         const wrapper = mount(
             <Provider store={store}>
-                <ProductList reloadCart={reloadCart} restClient={'Axios'} products={products}/>
+                <ProductList reloadCart={reloadCart} restClient={'Axios'} products={products} />
             </Provider>);
 
         wrapper.find('h4').simulate('click')
@@ -89,6 +71,6 @@ describe('ProductList (React-Redux) Component', () => {
         expect(axiosMock.history.options.length).toBe(0);
 
         //todo exception request (with fetch I think)
-      });
+    });
 
 })
