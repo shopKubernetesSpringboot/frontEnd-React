@@ -2,7 +2,7 @@ import React from "react";
 import { render, unmountComponentAtNode } from "react-dom";
 import { act } from "react-dom/test-utils";
 
-import RestClientComp from "./RestClient";
+import RestClientComp, {AXIOS,FETCH} from "./RestClient";
 
 let container = null;
 beforeEach(() => {
@@ -19,25 +19,25 @@ afterEach(() => {
 });
 
 it("render with default option", () => {
-    act(() => {render(<RestClientComp restClient='Axios'/>, container)});
-    expect(container.textContent).toContain("Axios Rest Client:");
+    act(() => {render(<RestClientComp restClient={AXIOS}/>, container)});
+    expect(container.textContent).toContain(AXIOS +" Rest Client:");
 });
 it("render with Fetch option", () => {
-    act(() => {render(<RestClientComp restClient='Fetch'/>, container)});
-    expect(container.textContent).toContain("Fetch Rest Client:");
+    act(() => {render(<RestClientComp restClient={FETCH}/>, container)});
+    expect(container.textContent).toContain(FETCH+" Rest Client:");
 });
 
 it("render clicked option", () => {
     const handler=jest.fn()
-    act(() => {render(<RestClientComp handler={handler} restClient='Axios'/>, container)});
+    act(() => {render(<RestClientComp handler={handler} restClient={AXIOS}/>, container)});
   
     const button = document.querySelector("#fetchButton");
-    expect(button.innerHTML).toBe("Fetch");
+    expect(button.innerHTML).toBe(FETCH);
     act(() => { button.dispatchEvent(new MouseEvent("click", { bubbles: true })); });
-    expect(container.textContent).toContain("Fetch Rest Client:");
+    expect(container.textContent).toContain(FETCH+" Rest Client:");
   
     const buttonAxios = document.querySelector("#axiosButton");
-    expect(buttonAxios.innerHTML).toBe("Axios");
+    expect(buttonAxios.innerHTML).toBe(AXIOS);
     act(() => { buttonAxios.dispatchEvent(new MouseEvent("click", { bubbles: true })); });
-    expect(container.textContent).toContain("Axios Rest Client:");
+    expect(container.textContent).toContain(AXIOS+" Rest Client:");
   });

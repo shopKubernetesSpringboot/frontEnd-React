@@ -9,6 +9,7 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 
 import rootReducer from './reducers'
+import { AXIOS } from './components/RestClient';
 
 
 export default class App extends Component {
@@ -19,7 +20,7 @@ export default class App extends Component {
         this.state = {
             error: "",
             reloadCart: false,
-            restClient: 'Axios'
+            restClient: AXIOS
         };
 
         this.reloadCart = this.reloadCart.bind(this)
