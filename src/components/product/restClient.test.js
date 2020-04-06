@@ -5,6 +5,7 @@ import Adapter from 'enzyme-adapter-react-16'
 import MockAdapter from 'axios-mock-adapter';
 
 import * as restClientModules from './restClient';
+import {AXIOS,FETCH} from '../RestClient'
 
 const axiosMock = new MockAdapter(restClientModules.rest);
 
@@ -25,14 +26,14 @@ describe('ProductList (React-Redux) Component', () => {
         expect(res).toStrictEqual(mockJsonPromise)
     }
 
-    it("fetch", ()=> {
-        test(restClientModules.load('Fetch',''))
-        test(restClientModules.load('Fetch','xx'))
+    it(FETCH, ()=> {
+        test(restClientModules.load(FETCH,''))
+        test(restClientModules.load(FETCH,'search'))
     })
 
-    it("axios", ()=> {
-        test(restClientModules.load('Axios',''))
-        test(restClientModules.load('Axios','xx'))
+    it(AXIOS, ()=> {
+        test(restClientModules.load(AXIOS,''))
+        test(restClientModules.load(AXIOS,'search'))
     })
 
 })

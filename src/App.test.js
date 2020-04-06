@@ -9,7 +9,7 @@ test('renders learn react link', () => {
   const productsHeader = getByText(/^Product List$/i);
   const cartHeader = getByText(/^Cart$/i);
   // const buttonAxios = getByTestId(/axiosButton/i);
-  // expect(container.querySelector("#axiosButton").textContent).toBe("Axios");
+  // expect(container.querySelector("#axiosButton").textContent).toBe(AXIOS);
   expect(linkReact).toBeInTheDocument();
   expect(linkGithub).toBeInTheDocument();
   expect(productsHeader).toBeInTheDocument();

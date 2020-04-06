@@ -20,7 +20,10 @@ const trashButtonSelector = "div.innerBox div.cartSummary button img[src='trash.
 describe('Cart (React-Redux) Component', () => {
     let store = mockStore();
     let reloadCart = jest.fn()
-    let items = [ {id: 'testProductId1', name: 'testProductName2', quantity: 1}, {id: 'testProductId2', name: 'testProductName2', quantity: 2} ]
+    let items = [
+        {id: 'testProductId1', name: 'testProductName2', quantity: 1},
+        {id: 'testProductId2', name: 'testProductName2', quantity: 2}
+    ]
     
     it("render empty cart", () => {
         const wrapper = mount(<CartList reload={reloadCart} restClient={AXIOS} items={[]} store={store}/>);

@@ -5,12 +5,13 @@ import Adapter from 'enzyme-adapter-react-16'
 import MockAdapter from 'axios-mock-adapter';
 
 import * as restClientModules from './restClient';
+import {AXIOS,FETCH} from '../RestClient'
 
 const axiosMock = new MockAdapter(restClientModules.rest);
 
 Enzyme.configure({ adapter: new Adapter() });
 
-describe('ProductList (React-Redux) Component', () => {
+describe('Cart restClient', () => {
     axiosMock.onGet().reply(200, []);
     axiosMock.onPost().reply(200);
     axiosMock.onDelete().reply(200);
@@ -29,16 +30,16 @@ describe('ProductList (React-Redux) Component', () => {
         expect(res).toStrictEqual(mockJsonPromise)
     }
 
-    it("fetch", () => {
-        test(restClientModules.list('Fetch'))
-        test(restClientModules.add('Fetch', product))
-        test(restClientModules.clean('Fetch'))
+    it(FETCH, () => {
+        test(restClientModules.list(FETCH))
+        test(restClientModules.add(FETCH, product))
+        test(restClientModules.clean(FETCH))
     })
 
-    it("axios", () => {
-        test(restClientModules.list('Axios'))
-        test(restClientModules.add('Axios', product))
-        test(restClientModules.clean('Axios'))
+    it(AXIOS, () => {
+        test(restClientModules.list(AXIOS))
+        test(restClientModules.add(AXIOS, product))
+        test(restClientModules.clean(AXIOS))
     })
 
 })

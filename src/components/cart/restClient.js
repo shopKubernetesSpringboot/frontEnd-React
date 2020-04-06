@@ -1,28 +1,29 @@
 import axios from 'axios'
 import { getConfig, deleteConfig, post } from "../restClient_fetch";
+import {AXIOS} from '../RestClient'
 // import Cookies from 'js-cookie';
 
 const host='http://localhost:8080'
-// let CSRF_TOKEN=''
-// let SESSION=''
 
 export const rest = axios.create({
     baseURL: host,
     timeout: 2000,
     auth: {
-      username: 'user',
-      password: 'user'
+        username: 'user',
+        password: 'user'
     },
     withCredentials: true,
-  })
+})
 
+// let CSRF_TOKEN=''
 // function setCSRF_TOKEN() {
 //     if (CSRF_TOKEN==='') {
 //         CSRF_TOKEN=Cookies.get('XSRF-TOKEN') // document.cookie.match(new RegExp(`XSRF-TOKEN=([^;]+)`))[1]; //test crash
 //         rest.defaults.headers.common['X-XSRF-TOKEN'] = CSRF_TOKEN
 //     }
 // }
-
+        
+// let SESSION=''
 // function setSESSION() {
 //     if (SESSION==='') {
 //         SESSION=Cookies.get('SESSION')
@@ -30,25 +31,18 @@ export const rest = axios.create({
 //     }
 // }
 
-// export async function list(restClient) {
-//     if (restClient==='Axios') {
-//         const res = await rest.get('/cart/list');
-//         return res.data;
-//     } else return restApi_CartList()
-// }
-
 export function list(restClient) {
-    if (restClient==='Axios') return rest.get('/cart/list').then((res) => res.data);
+    if (restClient===AXIOS) return rest.get('/cart/list').then((res) => res.data);
     else return restApi_CartList()
 }
 
 export function add(restClient, product) {
-    if (restClient==='Axios') return rest.post('/cart/add', { item: product})
+    if (restClient===AXIOS) return rest.post('/cart/add', { item: product})
     else return restApi_CartAdd(product)
 }
 
 export function clean(restClient) {
-    if (restClient==='Axios') return rest.delete('/cart/list')
+    if (restClient===AXIOS) return rest.delete('/cart/list')
     else return restApi_CartClean()
 }
 

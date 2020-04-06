@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { getConfig } from "../restClient_fetch";
+import {AXIOS} from '../RestClient'
 
 const host = 'http://localhost:8081'
 
@@ -14,11 +15,10 @@ export const rest = axios.create({
 })
 
 export function load(restClient, search) {
-  if (restClient === 'Axios')
+  if (restClient === AXIOS)
     return rest.get(host + '/product/' + (search === '' ? 'list' : 'find/' + search)).then((res) => res.data)
   else
     return list(search)
-
 }
 
 async function list(search) {

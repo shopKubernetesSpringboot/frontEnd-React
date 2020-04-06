@@ -8,6 +8,7 @@ import { Provider } from 'react-redux';
 
 import ProductList from "./ProductList";
 import * as restClientModules from './restClient';
+import {AXIOS} from '../RestClient'
 
 const axiosMock = new MockAdapter(restClientModules.rest);
 
@@ -25,7 +26,7 @@ describe('ProductList (React-Redux) Component', () => {
         restClientModules.load = jest.fn().mockReturnValue(Promise.resolve([]))
         const wrapper = mount(
             <Provider store={store}>
-                <ProductList reloadCart={reloadCart} restClient={'Axios'} products={products} />
+                <ProductList reloadCart={reloadCart} restClient={AXIOS} products={products} />
             </Provider>);
         // console.log(wrapper.debug({verbose:true}))
         // console.log(wrapper.find('ProductListRender').debug({verbose:true}))
@@ -43,7 +44,7 @@ describe('ProductList (React-Redux) Component', () => {
     it("render Failed to get products data", () => {
         const wrapper = mount(
             <Provider store={store}>
-                <ProductList reloadCart={reloadCart} restClient={'Axios'} />
+                <ProductList reloadCart={reloadCart} restClient={AXIOS} />
             </Provider>);
         expect(wrapper.find("div.innerBox div").at(0).getDOMNode()).toHaveTextContent('Failed to get products data');
     });
@@ -54,7 +55,7 @@ describe('ProductList (React-Redux) Component', () => {
         restClientModules.load = jest.fn().mockReturnValue(Promise.resolve(products))
         const wrapper = mount(
             <Provider store={store}>
-                <ProductList reloadCart={reloadCart} restClient={'Axios'} products={products} />
+                <ProductList reloadCart={reloadCart} restClient={AXIOS} products={products} />
             </Provider>);
 
         wrapper.find('h4').simulate('click')

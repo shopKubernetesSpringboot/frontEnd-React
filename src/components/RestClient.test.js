@@ -18,11 +18,11 @@ afterEach(() => {
     container = null;
 });
 
-it("render with default option", () => {
+it("render with "+AXIOS+" option", () => {
     act(() => {render(<RestClientComp restClient={AXIOS}/>, container)});
     expect(container.textContent).toContain(AXIOS +" Rest Client:");
 });
-it("render with Fetch option", () => {
+it("render with "+FETCH+" option", () => {
     act(() => {render(<RestClientComp restClient={FETCH}/>, container)});
     expect(container.textContent).toContain(FETCH+" Rest Client:");
 });
