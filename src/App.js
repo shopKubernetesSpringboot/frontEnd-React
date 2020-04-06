@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import './App.css';
 import ProductList from './components/product/ProductList';
 import Cart from './components/cart/CartList';
-import MessagesRedux from './components/Messages';
+import Messages from './components/Messages';
 import InfoBox from './components/InfoBox';
 
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 
 import rootReducer from './reducers'
-import { AXIOS } from './components/RestClient';
+import { AXIOS } from './components/RestClientSelector';
 
 
 export default class App extends Component {
@@ -30,27 +30,27 @@ export default class App extends Component {
     }
 
     reloadCart() {
-        this.setState({ reloadCart: true }, this.setState({reloadCart: false}))
+        this.setState({ reloadCart: true }, this.setState({ reloadCart: false }))
     }
 
     restClientHandler(client) {
-        this.setState({restClient: client})
+        this.setState({ restClient: client })
     }
 
     render() {
         return (
             <Provider store={this.store}>
                 <div className="main">
-                    <MessagesRedux/>
+                    <Messages />
 
                     <div className="floatLeft box">
-                        <InfoBox restClientHandler={this.restClientHandler} restClient={this.state.restClient}/>
+                        <InfoBox restClientHandler={this.restClientHandler} restClient={this.state.restClient} />
                     </div>
                     <div className="floatLeft box">
-                        <ProductList reloadCart={this.reloadCart} restClient={this.state.restClient}/>
+                        <ProductList reloadCart={this.reloadCart} restClient={this.state.restClient} />
                     </div>
                     <div className="floatLeft box">
-                        <Cart reload={this.state.reloadCart} restClient={this.state.restClient}/>
+                        <Cart reload={this.state.reloadCart} restClient={this.state.restClient} />
                     </div>
                 </div>
             </Provider>

@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 
 import ProductList from "./ProductList";
 import * as restClientModules from './restClient';
-import {AXIOS} from '../RestClient'
+import { AXIOS } from '../RestClientSelector'
 
 const axiosMock = new MockAdapter(restClientModules.rest);
 

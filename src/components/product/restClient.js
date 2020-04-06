@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { getConfig } from "../restClient_fetch";
-import {AXIOS} from '../RestClient'
+import { AXIOS } from '../RestClientSelector'
 
 const host = 'http://localhost:8081'
 
