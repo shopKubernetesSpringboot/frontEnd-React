@@ -1,8 +1,13 @@
 language: node_js
 node_js: node
 cache: npm
-install:
-  - git fetch --unshallow --tags
+# install:
+#   - git fetch --unshallow --tags
+
+#Fix sonar blame issue
+git:
+  depth: false
+
 script:
   - yarn test --env=jsdom --coverage --watchAll=false --testResultsProcessor jest-sonar-reporter
   - yarn sonar
