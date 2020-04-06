@@ -11,7 +11,7 @@ sonarqubeScanner(
       'sonar.projectDescription': 'Front-end ReactJs for shop* micro-services',
       "sonar.organization": "davidgfolch-github",
       "sonar.sources": "./src",
-      "sonar.exclusions": "./src/serviceWorker.js,./src/index.js",
+      "sonar.exclusions": "**/serviceWorker.js,**/index.js",
       "sonar.tests": 'src',
       "sonar.test.inclusions": "**/*.test.js",
       "sonar.javascript.lcov.reportPaths": "coverage/lcov.info",
