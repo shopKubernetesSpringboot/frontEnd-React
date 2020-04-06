@@ -1,8 +1,8 @@
 language: node_js
 node_js: node
 cache: npm
+install:
+  - git fetch --unshallow --tags
 script:
   - yarn test --env=jsdom --coverage --watchAll=false --testResultsProcessor jest-sonar-reporter
   - yarn sonar
-# after_success:
-#   - npm run coverage
