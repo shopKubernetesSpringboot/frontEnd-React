@@ -33,7 +33,7 @@ describe('ProductList (React-Redux) Component', () => {
         expect(wrapper.find("h4").exists()).toBeTruthy();
         let inputSelector = "[placeholder='Search for...']"
         let inputSearch = wrapper.find(inputSelector).at(0)
-        expect(wrapper.find("div.innerBox div div").at(1).getDOMNode()).toHaveTextContent(products[0].name);
+        expect(wrapper.find("div.innerBox div div.productName").at(0).getDOMNode()).toHaveTextContent(products[0].name);
         inputSearch.simulate('focus')
         inputSearch.simulate('change', { target: { value: 'X' } })
         expect(wrapper.find(inputSelector).prop('value')).toBe('X');
@@ -58,15 +58,15 @@ describe('ProductList (React-Redux) Component', () => {
                 <ProductList reloadCart={reloadCart} restClient={AXIOS} products={products} />
             </Provider>);
 
-        wrapper.find('h4').simulate('click')
+        wrapper.find('#reloadProducts').simulate('click')
         expect(restClientModules.load.mock.calls.length).toBe(2);
         expect(axiosMock.history.get.length).toBe(0);
         expect(axiosMock.history.options.length).toBe(0);
-        expect(wrapper.find("div.innerBox div div").at(1).getDOMNode()).toHaveTextContent(products[0].name);
+        expect(wrapper.find("div.innerBox div div.productName").at(0).getDOMNode()).toHaveTextContent(products[0].name);
 
         // //rejected request
         restClientModules.load = jest.fn().mockReturnValue(Promise.reject('rejectReason'))
-        wrapper.find('h4').simulate('click')
+        wrapper.find('#reloadProducts').simulate('click')
         expect(restClientModules.load.mock.calls.length).toBe(1);
         expect(axiosMock.history.get.length).toBe(0);
         expect(axiosMock.history.options.length).toBe(0);

@@ -1,6 +1,4 @@
 import React from 'react'
-import trashIcon from './trash.svg';
-import okIcon from './ok.svg';
 import { list, clean } from "./restClient";
 
 import { connect } from "react-redux";
@@ -49,14 +47,14 @@ class CartListComp extends React.Component {
         <div className="innerBox">
           <center><h4>Cart</h4></center>
           {this.state.cart.length > 0 &&
-            <div className="cartSummary">
-              <div className="floatRight cartSummary">
+            <div className="summary">
+              <div className="floatRight">
                 <button type="button" className="btn btn-primary btn-sm marginRight"
                   onClick={this.cleanCart.bind(this, this.props.updateCartFnc, this.props.restClient)}>
-                  <img src={trashIcon} alt="+" className="icon" />
+                  <img src={process.env.PUBLIC_URL + '/icons/trash.svg'} alt="trash" className="icon" />
                 </button>
                 <button type="button" className="btn btn-primary btn-sm">
-                  <img src={okIcon} alt="+" className="icon" />
+                  <img src={process.env.PUBLIC_URL + '/icons/ok.svg'} alt="ok" className="icon" />
                 </button>
               </div>
               <strong>
@@ -68,7 +66,7 @@ class CartListComp extends React.Component {
               <div className="floatLeft cartQuantity">
                 <span>{this.state.cart.length}</span>
               </div> Products
-              </div>
+            </div>
           }
           {this.state.cart.length === 0 &&
             <div className="sep">Cart is empty</div>

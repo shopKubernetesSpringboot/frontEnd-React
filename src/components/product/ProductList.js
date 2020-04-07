@@ -39,8 +39,16 @@ class ProductListComp extends React.Component {
         if (this.state.products) {
             return (
                 <div className="innerBox">
-                    <center><h4 onClick={this.loadProducts.bind(this)}>Product List</h4></center>
-                    <div className="sep"><input placeholder="Search for..." value={this.state.search} onChange={(e) => { this.handleChange(e) }}></input></div>
+                    <center><h4>Product List</h4></center>
+                    <div className="summary">
+                        <div className="floatRight">
+                            <button type="button" className="btn btn-primary btn-sm" onClick={this.loadProducts.bind(this)} id="reloadProducts">
+                                <img src={process.env.PUBLIC_URL + '/icons/reload.svg'} alt="reload" className="icon" />
+                            </button>
+                        </div>
+                        <button type="button" className="btn btn-primary btn-sm marginRight"><img src={process.env.PUBLIC_URL + '/icons/search.svg'} alt="search" className="icon"/></button>
+                        <input placeholder="Search for..." value={this.state.search} onChange={(e) => { this.handleChange(e) }}></input>
+                    </div>
                     {this.state.products.length === 0 &&
                         <div className="sep">No products found</div>
                     }
@@ -49,7 +57,10 @@ class ProductListComp extends React.Component {
                             <div className="floatRight">
                                 <CartButton reloadCart={this.props.reloadCart} product={product} restClient={this.props.restClient} />
                             </div>
-                            <div>{product.name}</div>
+                            <div className="floatLeft productPicture">
+                                <img src={process.env.PUBLIC_URL + '/' + (product.image ? 'product/' + product.id + '_icon.png' : 'icons/photo.svg')} alt="prodImg" className="icon" />
+                            </div>
+                            <div className="productName">{product.name}</div>
                         </div>
                     ))}
                 </div>

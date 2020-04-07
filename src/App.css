@@ -1,6 +1,8 @@
 body {
-  background-color: black;
-  color: rgb(185, 224, 224);
+  background-color: #1e1e2e;
+  color: #8ca185;
+  font-family: Poppins, sans-serif;
+  font-size: 0.9rem;
 }
 #errorDiv pre {
   color: inherit;
@@ -20,17 +22,44 @@ body {
   margin-right: 0.5em;
 }
 .box {
-  background-color: rgb(10, 20, 35);
+  background-color: #27293d;
   margin: 0.5em;
-  border-radius: 1em;
-  border: 1px solid lightgray;
+  border-radius: 0.5rem;
+  border: 1px solid gray;
 }
+.productPicture {
+  /* background-color: antiquewhite; */
+  margin-right: 0.5rem;
+  max-height: 80px;
+  max-width: 80px;
+}
+/* h4 button {
+  border: 1px outset dotted yellow;
+  border-radius: 0.5rem;
+  background-color: aliceblue;
+  padding-top: 0rem;
+  padding-left: 0.3rem;
+  padding-right: 0.3rem;
+  padding-bottom: 0px;
+  margin-left: 0.5rem;
+  margin-top: 0rem;
+  margin-bottom: 0.1rem;
+  cursor: pointer;
+  max-height: 1.6rem;
+  vertical-align: text-bottom;
+} */
+/* h4 button img {
+  vertical-align: top;
+  max-height: 0.9rem;
+  padding-top: 0rem;
+  margin-top: 0.3rem;
+} */
 @media (min-width: 600px) {
   .box {
     width: 30%;
   }
 }
-.cartSummary {
+.innerBox .summary {
   padding: 0.2em;
   padding-left: 0.5em;
   padding-top: 0em;
@@ -39,7 +68,7 @@ body {
 .cartQuantity span {
   padding-right: 0.5em;
   padding-left: 0.5em;
-  border-radius: 1em;
+  border-radius: 0.5rem;
   border: 1px solid lightblue;
 }
 .cartQuantity {
@@ -51,7 +80,7 @@ body {
   clear: both;
   padding: 0.2em;
   padding-left: 0.5em;
-  border-top: 1px dotted lightblue;
+  border-top: 1px dotted gray;
 }
 .padding {
   padding: 1em;
@@ -59,10 +88,10 @@ body {
 .innerBox h4 {
   padding-left: 0.5em;
   padding-right: 0.5em;
-  color: lightcyan;
-  background-color: rgb(0, 123, 255);
-  border-radius: 1em;
-  border: 1px solid lightgray;
+  color: #dcf1d5;
+  /* background-color: rgb(0, 123, 255); */
+  border-radius: 0.5rem;
+  /* border: 1px solid lightgray; */
 }
 
 .main {

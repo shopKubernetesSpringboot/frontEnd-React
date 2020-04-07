@@ -1,5 +1,4 @@
 import React from 'react'
-import cartIcon from './cart.svg';
 import { add } from "./restClient";
 
 import { connect } from "react-redux";
@@ -19,8 +18,7 @@ class CartButtonComp extends React.Component {
         return (
             <button type="button" className="btn btn-primary btn-sm"
                 onClick={this.restCartAdd.bind(this)}>
-                {/* <img src={process.env.PUBLIC_URL + '/cart.webp'} alt="+" class="icon"/> */}
-                <img src={cartIcon} alt="+" className="icon" />
+                <img src={process.env.PUBLIC_URL + '/icons/cart.svg'} alt="cart" className="icon" />
             </button>
         );
     }

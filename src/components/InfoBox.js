@@ -13,7 +13,8 @@ class InfoBox extends React.Component {
                     <a href="https://reactjs.org" target="_blank" rel="noopener noreferrer">Learn React</a>
                     <hr />
                     <p>Developed by <a href="https://github.com/davidgfolch">David G. Folch</a></p>
-                    <p>Icons <a href="https://github.com/danklammer/bytesize-icons">Bootstrap byte-size-icons</a></p>
+                    <p>Theme <a href="https://getbootstrap.com/docs/4.0/getting-started/introduction/">Bootstrap 4</a></p>
+                    <p>Icons <a href="https://github.com/danklammer/bytesize-icons#grab-n-go">Bootstrap byte-size-icons</a></p>
                     <RestClientSelector handler={this.props.restClientHandler} restClient={this.props.restClient} />
                 </div>
             </div>

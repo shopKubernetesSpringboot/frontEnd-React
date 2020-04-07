@@ -15,7 +15,7 @@ const axiosMock = new MockAdapter(restClientModules.rest);
 const mockStore = configureStore([]);
 Enzyme.configure({ adapter: new Adapter() });
 
-const trashButtonSelector = "div.innerBox div.cartSummary button img[src='trash.svg']";
+const trashButtonSelector = "div.innerBox div.summary button img[src='/icons/trash.svg']";
 
 describe('Cart (React-Redux) Component', () => {
     let store = mockStore();
@@ -42,11 +42,11 @@ describe('Cart (React-Redux) Component', () => {
         // console.log(wrapper.debug({verbose:true}))
         // console.log(wrapper.find('.cartSummary').debug({verbose:true}))
         expect(wrapper.find("h4").exists()).toBeTruthy();
-        expect(wrapper.find("div.innerBox div.cartSummary").at(0).getDOMNode()).toHaveTextContent('3 Items2 Products');
+        expect(wrapper.find("div.innerBox div.summary").at(0).getDOMNode()).toHaveTextContent('3 Items2 Products');
         expect(wrapper.find("div.innerBox div.sep").length).toBe(items.length);
-        expect(wrapper.find("div.innerBox div.cartSummary button").length).toBe(2);
+        expect(wrapper.find("div.innerBox div.summary button").length).toBe(2);
         expect(wrapper.find(trashButtonSelector).length).toBe(1);
-        expect(wrapper.find("div.innerBox div.cartSummary button img[src='ok.svg']").length).toBe(1);
+        expect(wrapper.find("div.innerBox div.summary button img[src='/icons/ok.svg']").length).toBe(1);
     });
 
     it("rest functions", () => {
