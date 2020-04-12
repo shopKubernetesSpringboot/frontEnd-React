@@ -1,6 +1,6 @@
 import React from 'react'
 import CartButton from '../cart/CartButton'
-import { load } from "./restClient";
+import { load, insert } from "./restClient";
 
 import { connect } from "react-redux";
 import { setError_mapDispatchToProps } from '../../actions/index'
@@ -29,6 +29,15 @@ class ProductListComp extends React.Component {
                 (onRejectReason) => this.props.setError({ msg: errorMsg, error: onRejectReason })
             ).catch((error) => this.props.setError({ msg: errorMsg, error: error }))
     }
+    insertProducts() {
+        this.props.setError({ msg: '', error: '' });
+        const errorMsg = 'Can\'t insert products!';
+        insert(this.props.restClient)
+            .then(
+                (data) => this.loadProducts(),
+                (onRejectReason) => this.props.setError({ msg: errorMsg, error: onRejectReason })
+            ).catch((error) => this.props.setError({ msg: errorMsg, error: error }))
+    }
 
     handleChange(e) {
         const searchValue = e.target.value
@@ -50,7 +59,7 @@ class ProductListComp extends React.Component {
                         <input placeholder="Search for..." value={this.state.search} onChange={(e) => { this.handleChange(e) }}></input>
                     </div>
                     {this.state.products.length === 0 &&
-                        <div className="sep">No products found</div>
+                        <div className="sep" onClick={this.insertProducts.bind(this)}>No products found, click to create products!</div>
                     }
                     {this.state.products.map((product) => (
                         <div className="sep" key={product.id}>

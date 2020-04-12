@@ -17,6 +17,7 @@ In the project directory, you can run:
 
 ### `yarn start`
 
+NOTE: to run in Kubernetes cluster use `REACT_APP_BACK_END_SERVER_IP=xx.xx.xx.xx yarn start` see Kubernetes README.md
 Runs the app in the development mode.
 
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.

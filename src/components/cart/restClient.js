@@ -1,9 +1,11 @@
 import axios from 'axios'
 import { getConfig, deleteConfig, post } from "../restClient_fetch";
 import { AXIOS } from '../RestClientSelector'
-// import Cookies from 'js-cookie';
+//import Cookies from 'js-cookie';
 
-const host = 'http://localhost:8080'
+const host = 'http://'+(process.env.REACT_APP_BACK_END_SERVER_IP?process.env.REACT_APP_BACK_END_SERVER_IP:'localhost:8080')
+
+//const CSRF_TOKEN = Cookies.get('XSRF-TOKEN') // document.cookie.match(new RegExp(`XSRF-TOKEN=([^;]+)`))[1]; //test crash
 
 export const rest = axios.create({
     baseURL: host,
@@ -12,6 +14,9 @@ export const rest = axios.create({
         username: 'user',
         password: 'user'
     },
+    //headers: {
+    //    "X-XSRF-TOKEN": CSRF_TOKEN
+    //  },
     withCredentials: true,
 })
 

@@ -1,8 +1,8 @@
 import axios from 'axios'
-import { getConfig } from "../restClient_fetch";
+import { getConfig, putConfig } from "../restClient_fetch";
 import { AXIOS } from '../RestClientSelector'
 
-const host = 'http://localhost:8081'
+const host = 'http://'+(process.env.REACT_APP_BACK_END_SERVER_IP?process.env.REACT_APP_BACK_END_SERVER_IP:'localhost:8081')
 
 export const rest = axios.create({
   baseURL: host,
@@ -20,8 +20,18 @@ export function load(restClient, search) {
   else
     return list(search)
 }
+export function insert(restClient) {
+  if (restClient === AXIOS)
+    return rest.put(host + '/product/all')
+  else
+    return insertFetch()
+}
 
 async function list(search) {
   const res = await fetch(host + '/product/' + (search === '' ? 'list' : 'find/' + search), getConfig)
+  return await res.json();
+}
+async function insertFetch() {
+  const res = await fetch(host + '/product/all', putConfig)
   return await res.json();
 }
