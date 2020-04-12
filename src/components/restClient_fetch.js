@@ -16,7 +16,7 @@ const config = {
 }
 export const getConfig = cloneDeep(config); getConfig.method = 'GET'
 export const postConfig = cloneDeep(config); postConfig.method = 'POST'
-export const putConfig = cloneDeep(config); postConfig.method = 'PUT'
+export const putConfig = cloneDeep(config); putConfig.method = 'PUT'
 export const deleteConfig = cloneDeep(config); deleteConfig.method = 'DELETE'
 
 function auth() {
